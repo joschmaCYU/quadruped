@@ -33,7 +33,7 @@
     <child link="cube5" />
     <origin xyz="0.069 0.098 -0.11469792884829269" rpy="-3.141592653589793 0 -3.141592653589793" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0"  velocity="0.5"/>
   </joint>
   <link name="cube5">
     <visual>
@@ -62,7 +62,7 @@
     <child link="cube9" />
     <origin xyz="-0.048161324956420803 0.17705483565899827 0.019230531314252386" rpy="-1.570796326794897 0 1.570796326794897" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <link name="cube9">
     <visual>
@@ -92,7 +92,7 @@
     <child link="cube6" />
     <origin xyz="-0.1033382551226713 -0.0983866064663887 -0.11469792884829269" rpy="3.141592653589793 0 0" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <link name="cube6">
     <visual>
@@ -121,7 +121,7 @@
     <child link="cube10" />
     <origin xyz="-0.048161324956420803 0.17705483565899827 0.019230531314252386" rpy="-1.5707963267948966 0 1.5707963267948963" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <link name="cube10">
     <visual>
@@ -151,7 +151,7 @@
     <child link="cube7" />
     <origin xyz="0.09216405792838034 -0.0977373217828965 -0.11469792884829269" rpy="3.141592653589793 0 0" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <link name="cube7">
     <visual>
@@ -180,7 +180,7 @@
     <child link="cube11" />
     <origin xyz="0.04633851732690226 0.17705483565899827 0.019230531314252386" rpy="-1.5707963267948966 0 1.5707963267948963" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <link name="cube11">
     <visual>
@@ -210,7 +210,7 @@
     <child link="cube8" />
     <origin xyz="-0.10493619252487814 0.10058603880101953 -0.11469792884829269" rpy="-3.141592653589793 0 -3.141592653589793" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <link name="cube8">
     <visual>
@@ -239,7 +239,7 @@
     <child link="cube12" />
     <origin xyz="0.04633851732690226 0.17705483565899827 0.019230531314252386" rpy="-1.5707963267948966 0 1.5707963267948963" />
     <axis xyz="0 0 1"/>
-    <limit effort="1000.0" lower="-1.57" upper="1.57" velocity="0.5"/>
+    <limit effort="1000.0" lower="-3.14" upper="3.14" velocity="0.5"/>
   </joint>
   <link name="cube12">
     <visual>
