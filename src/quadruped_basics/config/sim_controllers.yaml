@@ -11,6 +11,7 @@ controller_manager:
 
 joint_group_position_controller:
   ros__parameters:
+    use_sim_time: true
     joints:
       - base_link_to_cube5
       - cube5_to_cube9

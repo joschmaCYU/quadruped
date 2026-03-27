@@ -1,5 +1,7 @@
 ## Start docker
 docker-compose up -d quadruped
+docker-compose up -d 
+
 ## Stop
 docker-compose stop quadruped
 

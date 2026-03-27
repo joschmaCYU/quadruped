@@ -10,19 +10,22 @@ class GazeboQuadrupedNode(Node):
         super().__init__('gazebo_quadruped_node')
         self.publisher_ = self.create_publisher(Float64MultiArray, '/joint_group_position_controller/commands', 10)
         self.subscription = self.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 10)
+
+        self.cmd_x = 0.0 
+        self.cmd_w = 0.0
             
-        self.current_speed = 0.0 
         self.walk_time = 0.0     
         self.dt = 0.05           
         self.timer = self.create_timer(self.dt, self.timer_callback)
         self.get_logger().info("Spider Brain Online! Waiting for keyboard commands...")
 
     def cmd_vel_callback(self, msg):
-        self.current_speed = msg.linear.x
+        self.cmd_x = msg.linear.x
+        self.cmd_w = msg.angular.z
 
     # --- THE NEW SPIDER MATH ---
     def get_spider_gait(self, t, phase_offset):
-        T = 2 # time to complet the movement
+        T = 2.5 # time to complet the movement
         duty_factor = 0.60    # 60% of the time on the ground
         cycle_progress = ((t / T) + phase_offset) % 1.0
         
@@ -46,21 +49,26 @@ class GazeboQuadrupedNode(Node):
         return shoulder_move, knee_move
 
     def timer_callback(self):
-        if self.current_speed != 0.0:
-            self.walk_time += (self.dt * self.current_speed)
+        if self.cmd_x != 0.0 or self.cmd_w != 0.0:
+            self.walk_time += self.dt
             
         # Pair A (Front Left, Back Right) and Pair B (Front Right, Back Left)
-        shoulder_A, knee_A = self.get_spider_gait(self.walk_time, 0.0)
-        shoulder_B, knee_B = self.get_spider_gait(self.walk_time, 0.5)
+        sweep_A, knee_A = self.get_spider_gait(self.walk_time, 0.0)
+        sweep_B, knee_B = self.get_spider_gait(self.walk_time, 0.5)
+
+        amp_FL = (self.cmd_x - (self.cmd_w * 0.5))
+        amp_FR = (self.cmd_x + (self.cmd_w * 0.5))
+        amp_BL = (self.cmd_x - (self.cmd_w * 0.5))
+        amp_BR = (self.cmd_x + (self.cmd_w * 0.5))
 
         # Build the final array. 
         # +/- 1.57 centers the thighs so they point straight forward/backward
         msg = Float64MultiArray()
         msg.data = [
-            float(shoulder_A),  float(knee_A),   # Front Left
-            float(-shoulder_A), float(knee_A),   # Back Right (Mirrored)
-            float(-shoulder_B), float(knee_B),   # Front Right (Mirrored)
-            float(shoulder_B),  float(knee_B)    # Back Left
+            float(amp_FL * sweep_A),   float(knee_A),   # Front Left
+            float(-(amp_BR * sweep_A)), float(knee_A),   # Back Right (Mirrored)
+            float(-(amp_FR * sweep_B)), float(knee_B),   # Front Right (Mirrored)
+            float(amp_BL * sweep_B),   float(knee_B)    # Back Left
         ]
         
         self.publisher_.publish(msg)
