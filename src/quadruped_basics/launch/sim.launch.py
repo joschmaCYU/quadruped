@@ -27,12 +27,14 @@ def generate_launch_description():
         parameters=[robot_description, {'use_sim_time': True}]
     )
 
+    world_file = os.path.join(get_package_share_directory(pkg_name), 'worlds', 'box_fort.sdf')
+
     # 4. Start Gazebo Simulator (Loading an empty world)
     gazebo = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')
         ),
-        launch_arguments={'gz_args': '-r empty.sdf'}.items()
+        launch_arguments={'gz_args': f'-r {world_file}'}.items()
     )
 
     # 5. Spawn the robot inside Gazebo
@@ -54,8 +56,7 @@ def generate_launch_description():
         executable='parameter_bridge',
         arguments=[
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock',
-            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan',
-            '/belly_scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan'
+            '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan'
         ],
         output='screen'
     )

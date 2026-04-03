@@ -32,6 +32,8 @@ RUN apt-get update -q && \
     ros-${ROS_DISTRO}-slam-toolbox \
     ros-${ROS_DISTRO}-navigation2 \
     ros-${ROS_DISTRO}-nav2-bringup \
+    ros-${ROS_DISTRO}-navigation2 \
+    ros-${ROS_DISTRO}-nav2-bringup \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*

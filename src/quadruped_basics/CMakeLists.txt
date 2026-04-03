@@ -33,6 +33,7 @@ install(DIRECTORY
     launch
     urdf
     config
+    worlds
     DESTINATION share/${PROJECT_NAME}/
 )
 

@@ -2,7 +2,8 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Twist, TransformStamped
+from tf2_ros import TransformBroadcaster
 import math
 
 class GazeboQuadrupedNode(Node):
@@ -10,6 +11,11 @@ class GazeboQuadrupedNode(Node):
         super().__init__('gazebo_quadruped_node')
         self.publisher_ = self.create_publisher(Float64MultiArray, '/joint_group_position_controller/commands', 10)
         self.subscription = self.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 10)
+
+        self.tf_broadcaster = TransformBroadcaster(self)
+        self.odom_x = 0.0
+        self.odom_y = 0.0
+        self.odom_yaw = 0.0
 
         self.cmd_x = 0.0 
         self.cmd_w = 0.0
@@ -51,6 +57,34 @@ class GazeboQuadrupedNode(Node):
     def timer_callback(self):
         if self.cmd_x != 0.0 or self.cmd_w != 0.0:
             self.walk_time += self.dt
+            # --- CALCULATE SMOOTH ODOMETRY ---
+            # These multipliers match the physical speed of your Gazebo robot
+            speed_multiplier = 0.06 
+            turn_multiplier = 0.3
+
+            # Calculate our new X, Y, and rotation based on keyboard inputs!
+            self.odom_yaw += (self.cmd_w * turn_multiplier) * self.dt
+            self.odom_x += (self.cmd_x * speed_multiplier * math.cos(self.odom_yaw)) * self.dt
+            self.odom_y += (self.cmd_x * speed_multiplier * math.sin(self.odom_yaw)) * self.dt
+
+        # --- 2. PUBLISH THE ODOMETRY TO SLAM ---
+        # We publish this constantly so SLAM never loses track of the robot
+        t = TransformStamped()
+        t.header.stamp = self.get_clock().now().to_msg()
+        t.header.frame_id = 'odom'
+        t.child_frame_id = 'base_footprint'
+
+        t.transform.translation.x = self.odom_x
+        t.transform.translation.y = self.odom_y
+        t.transform.translation.z = 0.0
+
+        # Convert our flat rotation into a 3D Quaternion
+        t.transform.rotation.x = 0.0
+        t.transform.rotation.y = 0.0
+        t.transform.rotation.z = math.sin(self.odom_yaw / 2.0)
+        t.transform.rotation.w = math.cos(self.odom_yaw / 2.0)
+
+        self.tf_broadcaster.sendTransform(t)
             
         # Pair A (Front Left, Back Right) and Pair B (Front Right, Back Left)
         sweep_A, knee_A = self.get_spider_gait(self.walk_time, 0.0)

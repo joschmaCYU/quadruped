@@ -1,0 +1,16 @@
+digraph G {
+"base_link" -> "cube5"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"base_footprint" -> "base_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+"base_link" -> "cube6"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"base_link" -> "cube7"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"base_link" -> "cube8"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"cube5" -> "cube9"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"cube6" -> "cube10"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"cube7" -> "cube11"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"cube8" -> "cube12"[label=" Broadcaster: default_authority\nAverage rate: 16.878\nBuffer length: 4.74\nMost recent transform: 43.5\nOldest transform: 38.76\n"];
+"base_link" -> "belly_lidar_link"[label=" Broadcaster: default_authority\nAverage rate: 10000.0\nBuffer length: 0.0\nMost recent transform: 0.0\nOldest transform: 0.0\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1774736449.4265938"[ shape=plaintext ] ;
+}->"base_footprint";
+}
