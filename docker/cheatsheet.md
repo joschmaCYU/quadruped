@@ -38,8 +38,15 @@ Pair B (These legs move together):
     Back Left Knee: Pin 21
 
 
-# Launch seq :
+# Launch seq for autonomus nav :
 ros2 launch quadruped_basics sim.launch.py
 ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
 ros2 launch nav2_bringup bringup_launch.py use_sim_time:=true map:=/home/ros/ros2_ws/src/quadruped_basics/maps/my_map.yaml
 ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz --ros-args -p use_sim_time:=true
+(Don't forget to put origin 2D pose)
+
+# Launch for mapping :
+ros2 launch quadruped_basics sim.launch.py
+ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
+ros2 launch slam_toolbox online_async_launch.py use_sim_time:=true
+ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true

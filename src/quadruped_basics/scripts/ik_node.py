@@ -36,7 +36,7 @@ class GazeboQuadrupedNode(Node):
         cycle_progress = ((t / T) + phase_offset) % 1.0
         
         swing_amplitude = 0.4 # How far the shoulder sweeps forward/backward
-        lift_amplitude = 0.6  # How high the knee bends to clear the floor
+        lift_amplitude = 0.85  # How high the knee bends to clear the floor
         
         if cycle_progress < duty_factor:
             # STANCE PHASE: Foot on the floor, pushing the robot forward
@@ -59,8 +59,8 @@ class GazeboQuadrupedNode(Node):
             self.walk_time += self.dt
             # --- CALCULATE SMOOTH ODOMETRY ---
             # These multipliers match the physical speed of your Gazebo robot
-            speed_multiplier = 0.06 
-            turn_multiplier = 0.3
+            speed_multiplier = 0.03 
+            turn_multiplier = 0.03
 
             # Calculate our new X, Y, and rotation based on keyboard inputs!
             self.odom_yaw += (self.cmd_w * turn_multiplier) * self.dt
@@ -90,10 +90,10 @@ class GazeboQuadrupedNode(Node):
         sweep_A, knee_A = self.get_spider_gait(self.walk_time, 0.0)
         sweep_B, knee_B = self.get_spider_gait(self.walk_time, 0.5)
 
-        amp_FL = (self.cmd_x - (self.cmd_w * 0.5))
-        amp_FR = (self.cmd_x + (self.cmd_w * 0.5))
-        amp_BL = (self.cmd_x - (self.cmd_w * 0.5))
-        amp_BR = (self.cmd_x + (self.cmd_w * 0.5))
+        amp_FL = (self.cmd_x - (self.cmd_w * 1.5))
+        amp_FR = (self.cmd_x + (self.cmd_w * 1.5))
+        amp_BL = (self.cmd_x - (self.cmd_w * 1.5))
+        amp_BR = (self.cmd_x + (self.cmd_w * 1.5))
 
         # Build the final array. 
         # +/- 1.57 centers the thighs so they point straight forward/backward
