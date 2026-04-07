@@ -38,6 +38,9 @@ Pair B (These legs move together):
     Back Left Knee: Pin 21
 
 
+# Launch robot :
+ros2 launch quadruped_basics display.launch.py
+
 # Launch seq for autonomus nav :
 ros2 launch quadruped_basics sim.launch.py
 ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
@@ -50,3 +53,18 @@ ros2 launch quadruped_basics sim.launch.py
 ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
 ros2 launch slam_toolbox online_async_launch.py use_sim_time:=true
 ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true
+
+
+Weight :
+Foot : 7
+Leg : 4
+MG 90s : 14
+Body : 73
+Lidar : 46
+esp32 : 10
+Battery : 140
+UBEC 6A : 15
+UBEC 3A : 10
+
+7 * 4 + 4 * 4 + 14 * 8 + 73 + 46 + 10 + 140 + 15 + 10 = 450
+
