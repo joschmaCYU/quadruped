@@ -21,13 +21,10 @@ docker rmi quadruped:latest
 conda activate freecad_1_0_312 && freecad
 conda deactivate
 
-If ghost topic :
+# If ghost topic :
 ros2 daemon stop
 ros2 daemon start
 ros2 topic list
-
-# To launch real robot :
-If esp32 not connecting plug the battery after esp32 start
 
 Pair A (These legs move together):
     Front Left Shoulder: Pin 13
@@ -59,8 +56,10 @@ ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/
 # Launch for mapping :
 ros2 launch quadruped_basics sim.launch.py
 ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
-ros2 launch slam_toolbox online_async_launch.py use_sim_time:=true
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_slam_params.yaml use_sim_time:=true
 ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true
+## Save map :
+ros2 run nav2_map_server map_saver_cli -f /home/ros/ros2_ws/src/quadruped_project/src/quadruped_basics/maps/my_first_map
 
 
 Weight :
