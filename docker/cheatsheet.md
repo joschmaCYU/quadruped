@@ -17,12 +17,16 @@ bash build.sh
 ## Remove it 
 docker rmi quadruped:latest
 
+# For freecad :
+conda activate freecad_1_0_312 && freecad
+conda deactivate
 
 If ghost topic :
 ros2 daemon stop
 ros2 daemon start
 ros2 topic list
 
+# To launch real robot :
 If esp32 not connecting plug the battery after esp32 start
 
 Pair A (These legs move together):
@@ -38,8 +42,12 @@ Pair B (These legs move together):
     Back Left Knee: Pin 21
 
 
+ros2 run quadruped_basics dashboard.py
+
 # Launch robot :
 ros2 launch quadruped_basics display.launch.py
+docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:jazzy serial --dev /dev/ttyUSB0
+RESET esp32
 
 # Launch seq for autonomus nav :
 ros2 launch quadruped_basics sim.launch.py
@@ -67,4 +75,4 @@ UBEC 6A : 15
 UBEC 3A : 10
 
 7 * 4 + 4 * 4 + 14 * 8 + 73 + 46 + 10 + 140 + 15 + 10 = 450
-
+Main body : 14 * 4 + 73 + 10 + 140 + 15 + 10 = 304 + lidar ?

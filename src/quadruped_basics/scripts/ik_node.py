@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Float64MultiArray
+from std_msgs.msg import Float64MultiArray, Bool
 from geometry_msgs.msg import Twist, TransformStamped
 from tf2_ros import TransformBroadcaster
 import math
@@ -11,6 +11,9 @@ class GazeboQuadrupedNode(Node):
         super().__init__('gazebo_quadruped_node')
         self.publisher_ = self.create_publisher(Float64MultiArray, '/joint_group_position_controller/commands', 10)
         self.subscription = self.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 10)
+
+        self.dashboard_override = False
+        self.override_sub = self.create_subscription(Bool, '/dashboard_override', self.override_callback, 10)
 
         self.tf_broadcaster = TransformBroadcaster(self)
         self.odom_x = 0.0
@@ -25,6 +28,9 @@ class GazeboQuadrupedNode(Node):
         self.timer = self.create_timer(self.dt, self.timer_callback)
         self.get_logger().info("Spider Brain Online! Waiting for keyboard commands...")
 
+    def override_callback(self, msg):
+        self.dashboard_override = msg.data
+
     def cmd_vel_callback(self, msg):
         self.cmd_x = msg.linear.x
         self.cmd_w = msg.angular.z
@@ -35,7 +41,7 @@ class GazeboQuadrupedNode(Node):
         duty_factor = 0.60    # 60% of the time on the ground
         cycle_progress = ((t / T) + phase_offset) % 1.0
         
-        swing_amplitude = 0.4 # How far the shoulder sweeps forward/backward
+        swing_amplitude = 0.85 # How far the shoulder sweeps forward/backward
         lift_amplitude = 0.85  # How high the knee bends to clear the floor
         
         if cycle_progress < duty_factor:
@@ -51,7 +57,7 @@ class GazeboQuadrupedNode(Node):
             shoulder_move = -swing_amplitude + (2 * swing_amplitude * swing_p)
             # Use a sine wave to lift the knee into the air and put it back down
             knee_move = lift_amplitude * math.sin(swing_p * math.pi)
-            
+
         return shoulder_move, knee_move
 
     def timer_callback(self):
@@ -105,7 +111,8 @@ class GazeboQuadrupedNode(Node):
             float(amp_BL * sweep_B),   float(knee_B)    # Back Left
         ]
         
-        self.publisher_.publish(msg)
+        if not self.dashboard_override:
+            self.publisher_.publish(msg)
 
 def main(args=None):
     rclpy.init(args=args)

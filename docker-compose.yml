@@ -15,6 +15,7 @@ services:
       - ./src:/home/ros/ros2_ws/src      # Map X11 for GUI
       - /tmp/.X11-unix:/tmp/.X11-unix:rw
       - $HOME/.Xauthority:/tmp/.Xauthority:rw
+      - /var/run/docker.sock:/var/run/docker.sock
       # Optional: Map source code for live development
       # - ./src:/home/ros/ros2_ws/src
     command: ["tail", "-f", "/dev/null"]

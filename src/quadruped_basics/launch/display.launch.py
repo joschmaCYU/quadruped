@@ -1,6 +1,7 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
+from launch.actions import ExecuteProcess  # <-- NOUVEL IMPORT ICI
 from launch.substitutions import Command
 from launch_ros.actions import Node
 from launch_ros.parameter_descriptions import ParameterValue
@@ -30,7 +31,6 @@ def generate_launch_description():
     rviz_node = Node(
         package='rviz2',
         executable='rviz2',
-        name='rviz2',
         output='screen'
     )
 
@@ -42,8 +42,20 @@ def generate_launch_description():
         output='screen'
     )
 
+    # 4. Micro-ROS Agent via Docker (Sans le flag -it)
+    microros_agent_process = ExecuteProcess(
+        cmd=[
+            'docker', 'run', '--rm', 
+            '-v', '/dev:/dev', '--privileged', '--net=host', 
+            'microros/micro-ros-agent:jazzy', 
+            'serial', '--dev', '/dev/ttyUSB0'
+        ],
+        output='screen'
+    )
+
     return LaunchDescription([
         rsp_node,
         rviz_node,
-        ik_node
+        ik_node,
+        microros_agent_process  # <-- AJOUTÉ À LA LISTE ICI
     ])

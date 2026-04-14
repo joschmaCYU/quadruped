@@ -17,6 +17,7 @@ ament_target_dependencies(actuator_node rclcpp std_msgs)
 
 # --- Python Part ---
 install(PROGRAMS
+  dashboard.py
   scripts/led.py
   scripts/sweeper.py
   scripts/ik_node.py
@@ -34,6 +35,7 @@ install(DIRECTORY
     urdf
     config
     worlds
+    meshes
     DESTINATION share/${PROJECT_NAME}/
 )
 
