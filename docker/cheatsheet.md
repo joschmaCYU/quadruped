@@ -45,6 +45,8 @@ ros2 run quadruped_basics dashboard.py
 ros2 launch quadruped_basics display.launch.py
 docker run -it --rm -v /dev:/dev --privileged --net=host microros/micro-ros-agent:jazzy serial --dev /dev/ttyUSB0
 RESET esp32
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p use_sim_time:=true
+
 
 # Launch seq for autonomus nav :
 ros2 launch quadruped_basics sim.launch.py
