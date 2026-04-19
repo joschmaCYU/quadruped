@@ -4,6 +4,7 @@ from rclpy.node import Node
 from std_msgs.msg import Float64MultiArray, Bool
 from geometry_msgs.msg import Twist, TransformStamped
 from tf2_ros import TransformBroadcaster
+from nav_msgs.msg import Odometry
 import math
 
 class GazeboQuadrupedNode(Node):
@@ -11,6 +12,8 @@ class GazeboQuadrupedNode(Node):
         super().__init__('gazebo_quadruped_node')
         self.publisher_ = self.create_publisher(Float64MultiArray, '/joint_group_position_controller/commands', 10)
         self.subscription = self.create_subscription(Twist, 'cmd_vel', self.cmd_vel_callback, 10)
+
+        self.odom_pub = self.create_publisher(Odometry, '/odom', 10)
 
         self.dashboard_override = False
         self.override_sub = self.create_subscription(Bool, '/dashboard_override', self.override_callback, 10)
@@ -88,7 +91,7 @@ class GazeboQuadrupedNode(Node):
         return shoulder_angle, knee_angle
 
     def get_ik_gait(self, t, phase_offset, step_scale):
-        T = 2.0
+        T = 0.80
         duty_factor = 0.60
         cycle_progress = ((t / T) + phase_offset) % 1.0
         
@@ -114,20 +117,29 @@ class GazeboQuadrupedNode(Node):
         return self.calculate_ik(target_x, target_z)
 
     def timer_callback(self):
-        if self.cmd_x != 0.0 or self.cmd_w != 0.0:
+        # 1. Deadband filter to ignore tiny noise from Nav2
+        actual_cmd_x = self.cmd_x if abs(self.cmd_x) > 0.01 else 0.0
+        actual_cmd_w = self.cmd_w if abs(self.cmd_w) > 0.01 else 0.0
+
+        # 2. Apply trim ONLY to the legs, NOT the odometry
+        leg_cmd_w = actual_cmd_w
+        trim_value = -0.20 # to counter the drift 
+        
+        if actual_cmd_x != 0.0 and actual_cmd_w == 0.0:
+            leg_cmd_w = trim_value
+
+        if actual_cmd_x != 0.0 or actual_cmd_w != 0.0:
             self.walk_time += self.dt
-            # --- CALCULATE SMOOTH ODOMETRY ---
-            # These multipliers match the physical speed of your Gazebo robot
-            speed_multiplier = 0.03 
-            turn_multiplier = 0.03
 
-            # Calculate our new X, Y, and rotation based on keyboard inputs!
-            self.odom_yaw += (self.cmd_w * turn_multiplier) * self.dt
-            self.odom_x += (self.cmd_x * speed_multiplier * math.cos(self.odom_yaw)) * self.dt
-            self.odom_y += (self.cmd_x * speed_multiplier * math.sin(self.odom_yaw)) * self.dt
+        speed_multiplier = 0.08247
+        turn_multiplier = 0.188
 
-        # --- 2. PUBLISH THE ODOMETRY TO SLAM ---
-        # We publish this constantly so SLAM never loses track of the robot
+        # 3. Odometry uses the PURE command (actual_cmd), ignoring the trim
+        self.odom_yaw += (actual_cmd_w * turn_multiplier) * self.dt
+        self.odom_x += (actual_cmd_x * speed_multiplier * math.cos(self.odom_yaw)) * self.dt
+        self.odom_y += (actual_cmd_x * speed_multiplier * math.sin(self.odom_yaw)) * self.dt
+
+        # --- TF BROADCASTER ---
         t = TransformStamped()
         t.header.stamp = self.get_clock().now().to_msg()
         t.header.frame_id = 'odom'
@@ -137,7 +149,6 @@ class GazeboQuadrupedNode(Node):
         t.transform.translation.y = self.odom_y
         t.transform.translation.z = 0.0
 
-        # Convert our flat rotation into a 3D Quaternion
         t.transform.rotation.x = 0.0
         t.transform.rotation.y = 0.0
         t.transform.rotation.z = math.sin(self.odom_yaw / 2.0)
@@ -145,14 +156,30 @@ class GazeboQuadrupedNode(Node):
 
         self.tf_broadcaster.sendTransform(t)
 
-        is_moving = (self.cmd_x != 0.0 or self.cmd_w != 0.0)
+        # --- ODOMETRY PUBLISHER ---
+        odom_msg = Odometry()
+        odom_msg.header.stamp = t.header.stamp
+        odom_msg.header.frame_id = 'odom'
+        odom_msg.child_frame_id = 'base_footprint'
+        
+        odom_msg.pose.pose.position.x = self.odom_x
+        odom_msg.pose.pose.position.y = self.odom_y
+        odom_msg.pose.pose.orientation = t.transform.rotation
+        
+        # Give Nav2 the PURE speed, ignoring trim
+        odom_msg.twist.twist.linear.x = actual_cmd_x * speed_multiplier
+        odom_msg.twist.twist.angular.z = actual_cmd_w * turn_multiplier
+        
+        self.odom_pub.publish(odom_msg)
+
+        # --- KINEMATICS ---
+        is_moving = (actual_cmd_x != 0.0 or actual_cmd_w != 0.0)
         
         msg = Float64MultiArray()
             
         if not is_moving:
             # IDLE STATE: Snap to perfect standing pose
             stand_height = -0.20
-            # Calculate IK for a perfectly straight, planted leg
             idle_shoulder, idle_knee = self.calculate_ik(0.0, stand_height)
             msg.data = [
                 float(idle_shoulder),   float(idle_knee),   # FL
@@ -161,25 +188,22 @@ class GazeboQuadrupedNode(Node):
                 float(idle_shoulder),   float(idle_knee)    # BL
             ]
         else:
-            # Calculate how fast each leg should be stepping based on teleop
-            amp_FL = (self.cmd_x - (self.cmd_w * 1.5))
-            amp_FR = (self.cmd_x + (self.cmd_w * 1.5))
-            amp_BL = (self.cmd_x - (self.cmd_w * 1.5))
-            amp_BR = (self.cmd_x + (self.cmd_w * 1.5))
+            # WALKING STATE: Use leg_cmd_w which contains the mechanical trim
+            amp_FL = (actual_cmd_x - (leg_cmd_w * 1.5))
+            amp_FR = (actual_cmd_x + (leg_cmd_w * 1.5))
+            amp_BL = (actual_cmd_x - (leg_cmd_w * 1.5))
+            amp_BR = (actual_cmd_x + (leg_cmd_w * 1.5))
 
-            # Calculate IK for each leg independently!
             shoulder_FL, knee_FL = self.get_ik_gait(self.walk_time, 0.0, amp_FL)
             shoulder_BR, knee_BR = self.get_ik_gait(self.walk_time, 0.0, amp_BR)
             
             shoulder_FR, knee_FR = self.get_ik_gait(self.walk_time, 0.5, amp_FR)
             shoulder_BL, knee_BL = self.get_ik_gait(self.walk_time, 0.5, amp_BL)
 
-            # Build the final array. Notice we removed the amp_* multiplication here!
-            # We keep the negative signs to mirror the right-side/back servos.
             msg.data = [
                 float(shoulder_FL),   float(knee_FL),   # Front Left
-                float(-shoulder_BR),  float(knee_BR),   # Back Right (Mirrored)
-                float(-shoulder_FR),  float(knee_FR),   # Front Right (Mirrored)
+                float(-shoulder_BR),  float(knee_BR),   # Back Right
+                float(-shoulder_FR),  float(knee_FR),   # Front Right
                 float(shoulder_BL),   float(knee_BL)    # Back Left
             ]
         

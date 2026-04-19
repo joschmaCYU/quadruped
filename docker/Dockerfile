@@ -97,7 +97,8 @@ RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc &
 
 # 8. Entrypoint
 COPY --chown=$USERNAME:$USERNAME docker/entrypoint.sh /home/$USERNAME/entrypoint.sh
-RUN sudo chmod +x /home/$USERNAME/entrypoint.sh
+RUN sudo chmod +x /home/$USERNAME/entrypoint.sh 
+
 
 ENTRYPOINT ["/home/ros/entrypoint.sh"]
 CMD ["/bin/bash"]
