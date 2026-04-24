@@ -38,31 +38,6 @@ class GazeboQuadrupedNode(Node):
         self.cmd_x = msg.linear.x
         self.cmd_w = msg.angular.z
 
-    # --- THE NEW SPIDER MATH ---
-    # def get_spider_gait(self, t, phase_offset):
-    #     T = 2 # time to complet the movement
-    #     duty_factor = 0.60    # 60% of the time on the ground
-    #     cycle_progress = ((t / T) + phase_offset) % 1.0
-    #
-    #     swing_amplitude = 0.85 # How far the shoulder sweeps forward/backward
-    #     lift_amplitude = 0.85  # How high the knee bends to clear the floor
-    #
-    #     if cycle_progress < duty_factor:
-    #         # STANCE PHASE: Foot on the floor, pushing the robot forward
-    #         stance_p = cycle_progress / duty_factor 
-    #         # Sweep from +amplitude (Forward) to -amplitude (Backward)
-    #         shoulder_move = swing_amplitude - (2 * swing_amplitude * stance_p)
-    #         knee_move = 0.0 # Keep knee pointing straight down at the floor
-    #     else:
-    #         # SWING PHASE: Foot in the air, reaching forward for the next step
-    #         swing_p = (cycle_progress - duty_factor) / (1.0 - duty_factor) 
-    #         # Sweep from -amplitude (Backward) to +amplitude (Forward)
-    #         shoulder_move = -swing_amplitude + (2 * swing_amplitude * swing_p)
-    #         # Use a sine wave to lift the knee into the air and put it back down
-    #         knee_move = lift_amplitude * math.sin(swing_p * math.pi)
-    #
-    #     return shoulder_move, knee_move
-
     def calculate_ik(self, x, z):
         # 1. Physical Leg Lengths
         L1 = 0.206  # Pink thigh (horizontal sweep)
@@ -117,27 +92,17 @@ class GazeboQuadrupedNode(Node):
         return self.calculate_ik(target_x, target_z)
 
     def timer_callback(self):
-        # 1. Deadband filter to ignore tiny noise from Nav2
-        actual_cmd_x = self.cmd_x if abs(self.cmd_x) > 0.01 else 0.0
-        actual_cmd_w = self.cmd_w if abs(self.cmd_w) > 0.01 else 0.0
-
-        # 2. Apply trim ONLY to the legs, NOT the odometry
-        leg_cmd_w = actual_cmd_w
-        trim_value = -0.20 # to counter the drift 
-        
-        if actual_cmd_x != 0.0 and actual_cmd_w == 0.0:
-            leg_cmd_w = trim_value
-
-        if actual_cmd_x != 0.0 or actual_cmd_w != 0.0:
+        if self.cmd_x != 0.0 or self.cmd_w != 0.0:
             self.walk_time += self.dt
 
         speed_multiplier = 0.08247
-        turn_multiplier = 0.188
+        # if turn "l" if red right from black point then must choose bigger turn_mult
+        turn_multiplier = 0.6
 
-        # 3. Odometry uses the PURE command (actual_cmd), ignoring the trim
-        self.odom_yaw += (actual_cmd_w * turn_multiplier) * self.dt
-        self.odom_x += (actual_cmd_x * speed_multiplier * math.cos(self.odom_yaw)) * self.dt
-        self.odom_y += (actual_cmd_x * speed_multiplier * math.sin(self.odom_yaw)) * self.dt
+        self.odom_yaw += (self.cmd_w * turn_multiplier) * self.dt
+        self.odom_yaw = math.atan2(math.sin(self.odom_yaw), math.cos(self.odom_yaw))
+        self.odom_x += (self.cmd_x * speed_multiplier * math.cos(self.odom_yaw)) * self.dt
+        self.odom_y += (self.cmd_x * speed_multiplier * math.sin(self.odom_yaw)) * self.dt
 
         # --- TF BROADCASTER ---
         t = TransformStamped()
@@ -167,13 +132,13 @@ class GazeboQuadrupedNode(Node):
         odom_msg.pose.pose.orientation = t.transform.rotation
         
         # Give Nav2 the PURE speed, ignoring trim
-        odom_msg.twist.twist.linear.x = actual_cmd_x * speed_multiplier
-        odom_msg.twist.twist.angular.z = actual_cmd_w * turn_multiplier
+        odom_msg.twist.twist.linear.x = self.cmd_x * speed_multiplier
+        odom_msg.twist.twist.angular.z = self.cmd_w * turn_multiplier
         
         self.odom_pub.publish(odom_msg)
 
         # --- KINEMATICS ---
-        is_moving = (actual_cmd_x != 0.0 or actual_cmd_w != 0.0)
+        is_moving = (self.cmd_x != 0.0 or self.cmd_w != 0.0)
         
         msg = Float64MultiArray()
             
@@ -188,11 +153,11 @@ class GazeboQuadrupedNode(Node):
                 float(idle_shoulder),   float(idle_knee)    # BL
             ]
         else:
-            # WALKING STATE: Use leg_cmd_w which contains the mechanical trim
-            amp_FL = (actual_cmd_x - (leg_cmd_w * 1.5))
-            amp_FR = (actual_cmd_x + (leg_cmd_w * 1.5))
-            amp_BL = (actual_cmd_x - (leg_cmd_w * 1.5))
-            amp_BR = (actual_cmd_x + (leg_cmd_w * 1.5))
+            # WALKING STATE: Use self.cmd_w which contains the mechanical trim
+            amp_FL = (self.cmd_x - (self.cmd_w * 1.5))
+            amp_FR = (self.cmd_x + (self.cmd_w * 1.5))
+            amp_BL = (self.cmd_x - (self.cmd_w * 1.5))
+            amp_BR = (self.cmd_x + (self.cmd_w * 1.5))
 
             shoulder_FL, knee_FL = self.get_ik_gait(self.walk_time, 0.0, amp_FL)
             shoulder_BR, knee_BR = self.get_ik_gait(self.walk_time, 0.0, amp_BR)

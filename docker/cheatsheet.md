@@ -46,20 +46,22 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p use_sim_time:
 1) ros2 daemon stop && ros2 daemon start && ros2 topic list
 2) sudo fuser -v /dev/ttyUSB0 && sudo killall -9 micro_ros_agent
 
-
-# Launch seq for autonomus nav :
+# Launch sim + robot brain
 ros2 launch quadruped_basics sim.launch.py
 ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
-nav2_bringup bringup_launch.py use_sim_time:=true map:=/home/ros/ros2_ws/src/quadruped_basics/maps/third_better_map.yaml params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_nav2.yaml
-ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz --ros-args -p use_sim_time:=true
+## Launch seq for autonomus nav (amcl) :
+ros2 launch nav2_bringup bringup_launch.py use_sim_time:=true map:=/home/ros/ros2_ws/src/quadruped_basics/maps/third_better_map.yaml params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_nav2.yaml
 (Don't forget to put origin 2D pose)
-
-# Launch for mapping :
-ros2 launch quadruped_basics sim.launch.py
-ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
+## Launch seq for autonomus nav (slam) :
+ros2 launch nav2_bringup navigation_launch.py use_sim_time:=true params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_nav2.yaml
+ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_slam_params.yaml use_sim_time:=true
+(Don't forget to put origin 2D pose)
+### To visualise autonomus nav with nav2
+ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz --ros-args -p use_sim_time:=true
+## Launch for mapping (slam) :
 ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_slam_params.yaml use_sim_time:=true
 ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true
-## Save map :
+### Save map :
 ros2 run nav2_map_server map_saver_cli -f /home/ros/ros2_ws/src/quadruped_project/src/quadruped_basics/maps/my_first_map
 
 
