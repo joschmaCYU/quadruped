@@ -70,7 +70,19 @@ RUN mkdir -p /home/$USERNAME/ros2_ws/src/quadruped \
     && chown -R $USERNAME:$USERNAME /home/$USERNAME/ros2_ws
 
 # 4. Copy Code (Using the user flag to own the files)
-COPY src/ /home/ros/ros2_ws/src/
+COPY src/ /home/$USERNAME/ros2_ws/src/
+
+# Clone the LiDAR package ONLY if it doesn't already exist, then patch the Jazzy C++ bug
+RUN cd /home/$USERNAME/ros2_ws/src/ && \
+    if [ ! -d "ldlidar_stl_ros2" ]; then \
+        git clone https://github.com/ldrobotSensorTeam/ldlidar_stl_ros2.git; \
+    fi && \
+    if [ "${ROS_DISTRO}" = "jazzy" ]; then \
+        sed -i 's|//#include <pthread.h>|#include <pthread.h>|g' ldlidar_stl_ros2/ldlidar_driver/include/logger/log_module.h; \
+    fi
+
+# Permissions to use micro-ros-agent
+RUN sudo chmod 666 /var/run/docker.sock
 
 # 5. Switch to User to install dependencies and build
 USER $USERNAME

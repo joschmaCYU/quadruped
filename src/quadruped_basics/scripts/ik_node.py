@@ -96,7 +96,6 @@ class GazeboQuadrupedNode(Node):
             self.walk_time += self.dt
 
         speed_multiplier = 0.08247
-        # if turn "l" if red right from black point then must choose bigger turn_mult
         turn_multiplier = 0.6
 
         self.odom_yaw += (self.cmd_w * turn_multiplier) * self.dt

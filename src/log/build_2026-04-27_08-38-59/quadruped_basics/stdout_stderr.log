@@ -1,0 +1,34 @@
+[100%] Built target actuator_node
+-- Install configuration: ""
+-- Execute custom install script
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/dashboard.py
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/led.py
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/sweeper.py
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/ik_node.py
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/actuator_node
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//launch/display.launch.py
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//launch/launch.py
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//launch/sim.launch.py
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//urdf/quad.urdf.xacro
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/controllers.yaml
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/my_nav2.yaml
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/my_slam_params.yaml
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/sim_controllers.yaml
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//worlds/better_world.sdf
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//worlds/box_fort.sdf
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//worlds/fullbox.sdf
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/ament_index/resource_index/package_run_dependencies/quadruped_basics
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/ament_index/resource_index/parent_prefix_path/quadruped_basics
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/ament_prefix_path.sh
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/ament_prefix_path.dsv
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/path.sh
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/path.dsv
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.bash
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.sh
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.zsh
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.dsv
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/package.dsv
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/ament_index/resource_index/packages/quadruped_basics
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/cmake/quadruped_basicsConfig.cmake
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/cmake/quadruped_basicsConfig-version.cmake
+-- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/package.xml

@@ -1,0 +1,66 @@
+[0.015s] Invoking command in '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/ldlidar_stl_ros2 -- -j16 -l16
+[0.047s] -- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.252s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.267s] -- Found rclcpp: 28.1.18 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.305s] -- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.317s] -- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.333s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.351s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.428s] -- Found rmw_implementation_cmake: 7.3.3 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[0.430s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[0.502s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.578s] -- Found sensor_msgs: 5.3.7 (/opt/ros/jazzy/share/sensor_msgs/cmake)
+[0.645s] -- Found ament_lint_auto: 0.17.5 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[0.742s] -- Added test 'copyright' to check source files copyright and LICENSE
+[0.746s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[0.747s] -- Configured cppcheck include dirs: /home/ros/ros2_ws/src/ldlidar_stl_ros2/include;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/core;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/dataprocess;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/filter;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/logger;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/networkcom;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/serialcom
+[0.747s] -- Configured cppcheck exclude dirs and/or files: 
+[0.752s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[0.752s] -- Configured cpplint exclude dirs and/or files: 
+[0.753s] -- Added test 'flake8' to check Python code syntax and style conventions
+[0.753s] -- Configured 'flake8' exclude dirs and/or files: 
+[0.754s] -- Added test 'lint_cmake' to check CMake code style
+[0.755s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[0.760s] -- Added test 'uncrustify' to check C / C++ code style
+[0.760s] -- Configured uncrustify additional arguments: 
+[0.761s] -- Added test 'xmllint' to check XML markup files
+[0.763s] -- Configuring done (0.7s)
+[0.783s] -- Generating done (0.0s)
+[0.788s] -- Build files have been written to: /home/ros/ros2_ws/src/build/ldlidar_stl_ros2
+[0.834s] [ 50%] [32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/dataprocess/lipkg.cpp.o[0m
+[0.834s] [ 50%] [32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/core/ldlidar_driver.cpp.o[0m
+[0.834s] [ 50%] [32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/src/demo.cpp.o[0m
+[0.834s] [ 50%] [32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/filter/tofbf.cpp.o[0m
+[0.834s] [ 62%] [32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/logger/log_module.cpp.o[0m
+[0.834s] [ 75%] [32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/networkcom/network_socket_interface_linux.cpp.o[0m
+[0.835s] [ 87%] [32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/serialcom/serial_interface_linux.cpp.o[0m
+[5.189s] [100%] [32m[1mLinking CXX executable ldlidar_stl_ros2_node[0m
+[5.387s] [100%] Built target ldlidar_stl_ros2_node
+[5.396s] Invoked command in '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/ldlidar_stl_ros2 -- -j16 -l16
+[5.397s] Invoking command in '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/ros/ros2_ws/src/build/ldlidar_stl_ros2
+[5.404s] -- Install configuration: ""
+[5.404s] -- Execute custom install script
+[5.405s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/lib/ldlidar_stl_ros2/ldlidar_stl_ros2_node
+[5.413s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2//launch/ld06.launch.py
+[5.421s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2//launch/ld19.launch.py
+[5.430s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2//launch/stl27l.launch.py
+[5.437s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2//launch/viewer_ld06.launch.py
+[5.445s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2//launch/viewer_ld19.launch.py
+[5.453s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2//launch/viewer_stl27l.launch.py
+[5.460s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2//rviz2/ldlidar.rviz
+[5.468s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ament_index/resource_index/package_run_dependencies/ldlidar_stl_ros2
+[5.475s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ament_index/resource_index/parent_prefix_path/ldlidar_stl_ros2
+[5.483s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/environment/ament_prefix_path.sh
+[5.490s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/environment/ament_prefix_path.dsv
+[5.498s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/environment/path.sh
+[5.506s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/environment/path.dsv
+[5.514s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/local_setup.bash
+[5.523s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/local_setup.sh
+[5.533s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/local_setup.zsh
+[5.542s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/local_setup.dsv
+[5.551s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/package.dsv
+[5.560s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ament_index/resource_index/packages/ldlidar_stl_ros2
+[5.570s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/cmake/ldlidar_stl_ros2Config.cmake
+[5.578s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/cmake/ldlidar_stl_ros2Config-version.cmake
+[5.586s] -- Symlinking: /home/ros/ros2_ws/src/install/ldlidar_stl_ros2/share/ldlidar_stl_ros2/package.xml
+[5.595s] Invoked command in '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/ros/ros2_ws/src/build/ldlidar_stl_ros2

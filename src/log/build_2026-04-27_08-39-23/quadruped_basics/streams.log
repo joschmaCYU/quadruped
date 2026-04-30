@@ -1,0 +1,38 @@
+[0.012s] Invoking command in '/home/ros/ros2_ws/src/build/quadruped_basics': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/quadruped_basics -- -j16 -l16
+[0.066s] [100%] Built target actuator_node
+[0.076s] Invoked command in '/home/ros/ros2_ws/src/build/quadruped_basics' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/quadruped_basics -- -j16 -l16
+[0.084s] Invoking command in '/home/ros/ros2_ws/src/build/quadruped_basics': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/ros/ros2_ws/src/build/quadruped_basics
+[0.091s] -- Install configuration: ""
+[0.092s] -- Execute custom install script
+[0.092s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/dashboard.py
+[0.092s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/led.py
+[0.092s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/sweeper.py
+[0.092s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/ik_node.py
+[0.093s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/lib/quadruped_basics/actuator_node
+[0.093s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//launch/display.launch.py
+[0.093s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//launch/launch.py
+[0.093s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//launch/sim.launch.py
+[0.094s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//urdf/quad.urdf.xacro
+[0.094s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/controllers.yaml
+[0.094s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/my_nav2.yaml
+[0.095s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/my_slam_params.yaml
+[0.095s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//config/sim_controllers.yaml
+[0.095s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//worlds/better_world.sdf
+[0.095s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//worlds/box_fort.sdf
+[0.095s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics//worlds/fullbox.sdf
+[0.096s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/ament_index/resource_index/package_run_dependencies/quadruped_basics
+[0.096s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/ament_index/resource_index/parent_prefix_path/quadruped_basics
+[0.096s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/ament_prefix_path.sh
+[0.097s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/ament_prefix_path.dsv
+[0.097s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/path.sh
+[0.097s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/environment/path.dsv
+[0.097s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.bash
+[0.098s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.sh
+[0.098s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.zsh
+[0.098s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/local_setup.dsv
+[0.098s] -- Symlinking: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/package.dsv
+[0.107s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/ament_index/resource_index/packages/quadruped_basics
+[0.107s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/cmake/quadruped_basicsConfig.cmake
+[0.107s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/cmake/quadruped_basicsConfig-version.cmake
+[0.107s] -- Up-to-date symlink: /home/ros/ros2_ws/src/install/quadruped_basics/share/quadruped_basics/package.xml
+[0.109s] Invoked command in '/home/ros/ros2_ws/src/build/quadruped_basics' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --install /home/ros/ros2_ws/src/build/quadruped_basics

@@ -27,6 +27,7 @@ services:
     network_mode: host
     devices:
       - "/dev/ttyUSB0:/dev/ttyUSB0"
+      - "/dev/ttyUSB1:/dev/ttyUSB1"
     command: serial --dev /dev/ttyUSB0 -v6
 
     # The following services are commented out for this tutorial.

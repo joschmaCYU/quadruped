@@ -1,0 +1,3 @@
+Invoking command in '/home/ros/ros2_ws/src/build/quadruped_basics': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/ros/ros2_ws/src/quadruped_basics -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ros/ros2_ws/src/install/quadruped_basics
+Invoked command in '/home/ros/ros2_ws/src/build/quadruped_basics' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/ros/ros2_ws/src/quadruped_basics -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ros/ros2_ws/src/install/quadruped_basics
+Invoking command in '/home/ros/ros2_ws/src/build/quadruped_basics': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/quadruped_basics -- -j16 -l16

@@ -1,7 +1,7 @@
 import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import IncludeLaunchDescription, ExecuteProcess, RegisterEventHandler
+from launch.actions import IncludeLaunchDescription, ExecuteProcess, RegisterEventHandler, TimerAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.event_handlers import OnProcessExit
 from launch_ros.actions import Node
@@ -73,6 +73,65 @@ def generate_launch_description():
         output='screen'
     )
 
+    ik_node = Node(
+        package=pkg_name,
+        executable='ik_node.py',
+        name='quadruped_ik_node',
+        output='screen',
+        parameters=[{'use_sim_time': True}]
+    )
+
+    nav2_rviz_config_path = os.path.join(
+        get_package_share_directory('nav2_bringup'),
+        'rviz',
+        'nav2_default_view.rviz'
+    )
+
+    nav2_rviz_node = Node(
+        package='rviz2',
+        executable='rviz2',
+        name='rviz2',
+        arguments=['-d', nav2_rviz_config_path],
+        parameters=[{'use_sim_time': True}],
+        output='screen'
+    )
+
+# ros2 launch nav2_bringup navigation_launch.py use_sim_time:=true params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_nav2.yaml
+    nav2_launch_path = os.path.join(
+        get_package_share_directory('nav2_bringup'),
+        'launch',
+        'navigation_launch.py'
+    )
+
+    nav2_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(nav2_launch_path),
+        launch_arguments={
+            'use_sim_time': 'true',
+            'map': '/home/ros/ros2_ws/src/quadruped_basics/maps/third_better_map.yaml',
+            'params_file': '/home/ros/ros2_ws/src/quadruped_basics/config/my_nav2.yaml'
+        }.items()
+    )
+
+    #ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_slam_params.yaml use_sim_time:=true
+    slam_toolbox_launch_path = os.path.join(
+        get_package_share_directory('slam_toolbox'),
+        'launch',
+        'online_async_launch.py'
+    )
+
+    slam_toolbox_cmd = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(slam_toolbox_launch_path),
+        launch_arguments={
+            'use_sim_time': 'true',
+            'slam_params_file': '/home/ros/ros2_ws/src/quadruped_basics/config/my_slam_params.yaml'
+        }.items()
+    )
+
+    delayed_actions = TimerAction(
+        period=5.0,
+        actions=[nav2_cmd, slam_toolbox_cmd]
+    )
+
     return LaunchDescription([
         gazebo,
         node_robot_state_publisher,
@@ -92,4 +151,8 @@ def generate_launch_description():
                 on_exit=[load_position_controller],
             )
         ),
+        ik_node,
+        nav2_rviz_node,
+        delayed_actions,
+
     ])

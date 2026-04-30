@@ -1,0 +1,1 @@
+/home/ros/ros2_ws/src/build/quadruped_basics/ament_cmake_environment_hooks/local_setup.sh

@@ -1,0 +1,47 @@
+[0.012s] Invoking command in '/home/ros/ros2_ws/src/build/quadruped_basics': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/ros/ros2_ws/src/quadruped_basics -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ros/ros2_ws/src/install/quadruped_basics
+[0.124s] -- The C compiler identification is GNU 13.3.0
+[0.214s] -- The CXX compiler identification is GNU 13.3.0
+[0.229s] -- Detecting C compiler ABI info
+[0.309s] -- Detecting C compiler ABI info - done
+[0.318s] -- Check for working C compiler: /usr/bin/cc - skipped
+[0.319s] -- Detecting C compile features
+[0.320s] -- Detecting C compile features - done
+[0.329s] -- Detecting CXX compiler ABI info
+[0.418s] -- Detecting CXX compiler ABI info - done
+[0.428s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[0.428s] -- Detecting CXX compile features
+[0.429s] -- Detecting CXX compile features - done
+[0.444s] -- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)
+[0.605s] -- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter 
+[0.685s] -- Override CMake install command with custom implementation using symlinks instead of copying resources
+[0.789s] -- Found rclcpp: 28.1.18 (/opt/ros/jazzy/share/rclcpp/cmake)
+[0.882s] -- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)
+[0.916s] -- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)
+[0.965s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.001s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.141s] -- Found rmw_implementation_cmake: 7.3.3 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)
+[1.149s] -- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)
+[1.257s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  
+[1.277s] -- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") 
+[1.299s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[1.421s] -- Found rclpy: 7.1.11 (/opt/ros/jazzy/share/rclpy/cmake)
+[1.426s] -- Found std_msgs: 5.3.7 (/opt/ros/jazzy/share/std_msgs/cmake)
+[1.450s] -- Found ament_lint_auto: 0.17.5 (/opt/ros/jazzy/share/ament_lint_auto/cmake)
+[1.583s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.583s] -- Configured cppcheck include dirs: 
+[1.583s] -- Configured cppcheck exclude dirs and/or files: 
+[1.585s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.585s] -- Configured 'flake8' exclude dirs and/or files: 
+[1.586s] -- Added test 'lint_cmake' to check CMake code style
+[1.587s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[1.589s] -- Added test 'uncrustify' to check C / C++ code style
+[1.589s] -- Configured uncrustify additional arguments: 
+[1.590s] -- Added test 'xmllint' to check XML markup files
+[1.593s] -- Configuring done (1.6s)
+[1.603s] -- Generating done (0.0s)
+[1.606s] -- Build files have been written to: /home/ros/ros2_ws/src/build/quadruped_basics
+[1.615s] Invoked command in '/home/ros/ros2_ws/src/build/quadruped_basics' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake /home/ros/ros2_ws/src/quadruped_basics -DAMENT_CMAKE_SYMLINK_INSTALL=1 -DCMAKE_INSTALL_PREFIX=/home/ros/ros2_ws/src/install/quadruped_basics
+[1.616s] Invoking command in '/home/ros/ros2_ws/src/build/quadruped_basics': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/quadruped_basics -- -j16 -l16
+[1.663s] [ 50%] [32mBuilding CXX object CMakeFiles/actuator_node.dir/src/actuator.cpp.o[0m
+[9.180s] [100%] [32m[1mLinking CXX executable actuator_node[0m
+[9.412s] [100%] Built target actuator_node

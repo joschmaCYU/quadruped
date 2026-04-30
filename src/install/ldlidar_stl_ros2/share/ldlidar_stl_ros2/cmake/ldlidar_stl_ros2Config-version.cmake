@@ -1,0 +1,1 @@
+/home/ros/ros2_ws/src/build/ldlidar_stl_ros2/ament_cmake_core/ldlidar_stl_ros2Config-version.cmake

@@ -1,0 +1,231 @@
+[0.000000] (-) TimerEvent: {}
+[0.000214] (ldlidar_stl_ros2) JobQueued: {'identifier': 'ldlidar_stl_ros2', 'dependencies': OrderedDict()}
+[0.000248] (quadruped_basics) JobQueued: {'identifier': 'quadruped_basics', 'dependencies': OrderedDict()}
+[0.000476] (ldlidar_stl_ros2) JobStarted: {'identifier': 'ldlidar_stl_ros2'}
+[0.011914] (quadruped_basics) JobStarted: {'identifier': 'quadruped_basics'}
+[0.016893] (ldlidar_stl_ros2) JobProgress: {'identifier': 'ldlidar_stl_ros2', 'progress': 'cmake'}
+[0.017335] (ldlidar_stl_ros2) Command: {'cmd': ['/usr/bin/cmake', '/home/ros/ros2_ws/src/ldlidar_stl_ros2', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/ros/ros2_ws/src/install/ldlidar_stl_ros2'], 'cwd': '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2', 'env': OrderedDict({'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'HOSTNAME': 'josch-pcx0dx', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/ros', 'OLDPWD': '/home/ros/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'COLCON_PREFIX_PATH': '/home/ros/ros2_ws/install', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'XAUTHORITY': '/tmp/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.022396] (quadruped_basics) JobProgress: {'identifier': 'quadruped_basics', 'progress': 'cmake'}
+[0.022937] (quadruped_basics) Command: {'cmd': ['/usr/bin/cmake', '/home/ros/ros2_ws/src/quadruped_basics', '-DAMENT_CMAKE_SYMLINK_INSTALL=1', '-DCMAKE_INSTALL_PREFIX=/home/ros/ros2_ws/src/install/quadruped_basics'], 'cwd': '/home/ros/ros2_ws/src/build/quadruped_basics', 'env': OrderedDict({'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'HOSTNAME': 'josch-pcx0dx', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/ros', 'OLDPWD': '/home/ros/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'COLCON_PREFIX_PATH': '/home/ros/ros2_ws/install', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'XAUTHORITY': '/tmp/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/ros/ros2_ws/src/build/quadruped_basics', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[0.099867] (-) TimerEvent: {}
+[0.135422] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.135639] (quadruped_basics) StdoutLine: {'line': b'-- The C compiler identification is GNU 13.3.0\n'}
+[0.199960] (-) TimerEvent: {}
+[0.225448] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[0.225669] (quadruped_basics) StdoutLine: {'line': b'-- The CXX compiler identification is GNU 13.3.0\n'}
+[0.241233] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.241378] (quadruped_basics) StdoutLine: {'line': b'-- Detecting C compiler ABI info\n'}
+[0.300078] (-) TimerEvent: {}
+[0.321037] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.321201] (quadruped_basics) StdoutLine: {'line': b'-- Detecting C compiler ABI info - done\n'}
+[0.330475] (quadruped_basics) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.330674] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Check for working C compiler: /usr/bin/cc - skipped\n'}
+[0.330992] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.331108] (quadruped_basics) StdoutLine: {'line': b'-- Detecting C compile features\n'}
+[0.331722] (quadruped_basics) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.331838] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting C compile features - done\n'}
+[0.340764] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.340895] (quadruped_basics) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info\n'}
+[0.400168] (-) TimerEvent: {}
+[0.430369] (quadruped_basics) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.430577] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting CXX compiler ABI info - done\n'}
+[0.440066] (quadruped_basics) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.440246] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Check for working CXX compiler: /usr/bin/c++ - skipped\n'}
+[0.440439] (quadruped_basics) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.440594] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting CXX compile features\n'}
+[0.440882] (quadruped_basics) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.441031] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Detecting CXX compile features - done\n'}
+[0.456374] (quadruped_basics) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[0.456520] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found ament_cmake: 2.5.6 (/opt/ros/jazzy/share/ament_cmake/cmake)\n'}
+[0.500293] (-) TimerEvent: {}
+[0.600498] (-) TimerEvent: {}
+[0.616943] (quadruped_basics) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[0.617159] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found Python3: /usr/bin/python3 (found version "3.12.3") found components: Interpreter \n'}
+[0.696500] (quadruped_basics) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.696692] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Override CMake install command with custom implementation using symlinks instead of copying resources\n'}
+[0.700569] (-) TimerEvent: {}
+[0.800757] (-) TimerEvent: {}
+[0.801252] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found rclcpp: 28.1.18 (/opt/ros/jazzy/share/rclcpp/cmake)\n'}
+[0.801421] (quadruped_basics) StdoutLine: {'line': b'-- Found rclcpp: 28.1.18 (/opt/ros/jazzy/share/rclcpp/cmake)\n'}
+[0.894329] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)\n'}
+[0.894497] (quadruped_basics) StdoutLine: {'line': b'-- Found rosidl_generator_c: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_c/cmake)\n'}
+[0.900822] (-) TimerEvent: {}
+[0.928274] (quadruped_basics) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)\n'}
+[0.928464] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found rosidl_generator_cpp: 4.6.7 (/opt/ros/jazzy/share/rosidl_generator_cpp/cmake)\n'}
+[0.976927] (quadruped_basics) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.977059] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[1.000892] (-) TimerEvent: {}
+[1.012851] (quadruped_basics) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.013003] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[1.101025] (-) TimerEvent: {}
+[1.152640] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 7.3.3 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)\n'}
+[1.152870] (quadruped_basics) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 7.3.3 (/opt/ros/jazzy/share/rmw_implementation_cmake/cmake)\n'}
+[1.160679] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)\n'}
+[1.160872] (quadruped_basics) StdoutLine: {'line': b'-- Found rmw_fastrtps_cpp: 8.4.3 (/opt/ros/jazzy/share/rmw_fastrtps_cpp/cmake)\n'}
+[1.201126] (-) TimerEvent: {}
+[1.269012] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  \n'}
+[1.269179] (quadruped_basics) StdoutLine: {'line': b'-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.13")  \n'}
+[1.289396] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") \n'}
+[1.289530] (quadruped_basics) StdoutLine: {'line': b'-- Found FastRTPS: /opt/ros/jazzy/include (Required is at least version "2.13") \n'}
+[1.301234] (-) TimerEvent: {}
+[1.310942] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.311078] (quadruped_basics) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[1.401326] (-) TimerEvent: {}
+[1.432901] (quadruped_basics) StdoutLine: {'line': b'-- Found rclpy: 7.1.11 (/opt/ros/jazzy/share/rclpy/cmake)\n'}
+[1.433094] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found sensor_msgs: 5.3.7 (/opt/ros/jazzy/share/sensor_msgs/cmake)\n'}
+[1.438478] (quadruped_basics) StdoutLine: {'line': b'-- Found std_msgs: 5.3.7 (/opt/ros/jazzy/share/std_msgs/cmake)\n'}
+[1.461828] (quadruped_basics) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.17.5 (/opt/ros/jazzy/share/ament_lint_auto/cmake)\n'}
+[1.501419] (-) TimerEvent: {}
+[1.513287] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Found ament_lint_auto: 0.17.5 (/opt/ros/jazzy/share/ament_lint_auto/cmake)\n'}
+[1.595323] (quadruped_basics) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[1.595503] (quadruped_basics) StdoutLine: {'line': b'-- Configured cppcheck include dirs: \n'}
+[1.595581] (quadruped_basics) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[1.596583] (quadruped_basics) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[1.596698] (quadruped_basics) StdoutLine: {'line': b"-- Configured 'flake8' exclude dirs and/or files: \n"}
+[1.597746] (quadruped_basics) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.599064] (quadruped_basics) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[1.601107] (quadruped_basics) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[1.601220] (quadruped_basics) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[1.601480] (-) TimerEvent: {}
+[1.602413] (quadruped_basics) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.605062] (quadruped_basics) StdoutLine: {'line': b'-- Configuring done (1.6s)\n'}
+[1.615046] (quadruped_basics) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[1.618241] (quadruped_basics) StdoutLine: {'line': b'-- Build files have been written to: /home/ros/ros2_ws/src/build/quadruped_basics\n'}
+[1.627193] (quadruped_basics) CommandEnded: {'returncode': 0}
+[1.627665] (quadruped_basics) JobProgress: {'identifier': 'quadruped_basics', 'progress': 'build'}
+[1.628353] (quadruped_basics) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/ros/ros2_ws/src/build/quadruped_basics', '--', '-j16', '-l16'], 'cwd': '/home/ros/ros2_ws/src/build/quadruped_basics', 'env': OrderedDict({'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'HOSTNAME': 'josch-pcx0dx', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/ros', 'OLDPWD': '/home/ros/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'COLCON_PREFIX_PATH': '/home/ros/ros2_ws/install', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'XAUTHORITY': '/tmp/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/ros/ros2_ws/src/build/quadruped_basics', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[1.656249] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'copyright' to check source files copyright and LICENSE\n"}
+[1.661309] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'cppcheck' to perform static code analysis on C / C++ code\n"}
+[1.661996] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Configured cppcheck include dirs: /home/ros/ros2_ws/src/ldlidar_stl_ros2/include;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/core;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/dataprocess;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/filter;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/logger;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/networkcom;/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/include/serialcom\n'}
+[1.662120] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Configured cppcheck exclude dirs and/or files: \n'}
+[1.666916] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'cpplint' to check C / C++ code against the Google style\n"}
+[1.667037] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Configured cpplint exclude dirs and/or files: \n'}
+[1.668299] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'flake8' to check Python code syntax and style conventions\n"}
+[1.668421] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Configured 'flake8' exclude dirs and/or files: \n"}
+[1.670129] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'lint_cmake' to check CMake code style\n"}
+[1.671423] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257\n"}
+[1.675133] (quadruped_basics) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/actuator_node.dir/src/actuator.cpp.o\x1b[0m\n'}
+[1.676052] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'uncrustify' to check C / C++ code style\n"}
+[1.676169] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Configured uncrustify additional arguments: \n'}
+[1.677372] (ldlidar_stl_ros2) StdoutLine: {'line': b"-- Added test 'xmllint' to check XML markup files\n"}
+[1.679484] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Configuring done (1.6s)\n'}
+[1.691658] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Generating done (0.0s)\n'}
+[1.694991] (ldlidar_stl_ros2) StdoutLine: {'line': b'-- Build files have been written to: /home/ros/ros2_ws/src/build/ldlidar_stl_ros2\n'}
+[1.701571] (-) TimerEvent: {}
+[1.702182] (ldlidar_stl_ros2) CommandEnded: {'returncode': 0}
+[1.702587] (ldlidar_stl_ros2) JobProgress: {'identifier': 'ldlidar_stl_ros2', 'progress': 'build'}
+[1.702943] (ldlidar_stl_ros2) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2', '--', '-j16', '-l16'], 'cwd': '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2', 'env': OrderedDict({'GZ_SIM_RESOURCE_PATH': '/opt/ros/jazzy/share', 'GZ_CONFIG_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/share/gz:/opt/ros/jazzy/opt/sdformat_vendor/share/gz:/opt/ros/jazzy/opt/gz_gui_vendor/share/gz:/opt/ros/jazzy/opt/gz_transport_vendor/share/gz:/opt/ros/jazzy/opt/gz_rendering_vendor/share/gz:/opt/ros/jazzy/opt/gz_plugin_vendor/share/gz:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/share/gz:/opt/ros/jazzy/opt/gz_msgs_vendor/share/gz:/opt/ros/jazzy/opt/gz_common_vendor/share/gz', 'HOSTNAME': 'josch-pcx0dx', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/opt/ros/jazzy/opt/gz_sim_vendor/lib:/opt/ros/jazzy/opt/gz_sensors_vendor/lib:/opt/ros/jazzy/opt/gz_physics_vendor/lib:/opt/ros/jazzy/opt/sdformat_vendor/lib:/opt/ros/jazzy/opt/rviz_ogre_vendor/lib:/opt/ros/jazzy/lib/x86_64-linux-gnu:/opt/ros/jazzy/opt/gz_gui_vendor/lib:/opt/ros/jazzy/opt/gz_transport_vendor/lib:/opt/ros/jazzy/opt/gz_rendering_vendor/lib:/opt/ros/jazzy/opt/gz_plugin_vendor/lib:/opt/ros/jazzy/opt/gz_fuel_tools_vendor/lib:/opt/ros/jazzy/opt/gz_msgs_vendor/lib:/opt/ros/jazzy/opt/gz_common_vendor/lib:/opt/ros/jazzy/opt/gz_math_vendor/lib:/opt/ros/jazzy/opt/gz_utils_vendor/lib:/opt/ros/jazzy/opt/gz_tools_vendor/lib:/opt/ros/jazzy/opt/gz_ogre_next_vendor/lib:/opt/ros/jazzy/opt/gz_dartsim_vendor/lib:/opt/ros/jazzy/opt/gz_cmake_vendor/lib:/opt/ros/jazzy/lib', 'HOME': '/home/ros', 'OLDPWD': '/home/ros/ros2_ws', 'ROS_PYTHON_VERSION': '3', 'COLCON_PREFIX_PATH': '/home/ros/ros2_ws/install', 'ROS_DISTRO': 'jazzy', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'TERM': 'xterm', 'QT_X11_NO_MITSHM': '1', 'PATH': '/opt/ros/jazzy/opt/gz_msgs_vendor/bin:/opt/ros/jazzy/opt/gz_tools_vendor/bin:/opt/ros/jazzy/opt/gz_ogre_next_vendor/bin:/opt/ros/jazzy/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin', 'DISPLAY': ':0', 'LANG': 'C.UTF-8', 'XAUTHORITY': '/tmp/.Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:', 'AMENT_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy', 'DEBIAN_FRONTEND': 'noninteractive', 'ROS_AUTOMATIC_DISCOVERY_RANGE': 'SUBNET', 'PWD': '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2', 'LC_ALL': 'C.UTF-8', 'PYTHONPATH': '/opt/ros/jazzy/lib/python3.12/site-packages', 'COLCON': '1', 'CMAKE_PREFIX_PATH': '/home/ros/ros2_ws/install/quadruped_basics:/opt/ros/jazzy/opt/gz_sim_vendor:/opt/ros/jazzy/opt/gz_sensors_vendor:/opt/ros/jazzy/opt/gz_physics_vendor:/opt/ros/jazzy/opt/sdformat_vendor:/opt/ros/jazzy/opt/gz_gui_vendor:/opt/ros/jazzy/opt/gz_transport_vendor:/opt/ros/jazzy/opt/gz_rendering_vendor:/opt/ros/jazzy/opt/gz_plugin_vendor:/opt/ros/jazzy/opt/gz_fuel_tools_vendor:/opt/ros/jazzy/opt/gz_msgs_vendor:/opt/ros/jazzy/opt/gz_common_vendor:/opt/ros/jazzy/opt/gz_math_vendor:/opt/ros/jazzy/opt/gz_utils_vendor:/opt/ros/jazzy/opt/gz_tools_vendor:/opt/ros/jazzy/opt/gz_ogre_next_vendor:/opt/ros/jazzy/opt/gz_dartsim_vendor:/opt/ros/jazzy/opt/gz_cmake_vendor:/opt/ros/jazzy'}), 'shell': False}
+[1.753358] (ldlidar_stl_ros2) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/dataprocess/lipkg.cpp.o\x1b[0m\n'}
+[1.753632] (ldlidar_stl_ros2) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/core/ldlidar_driver.cpp.o\x1b[0m\n'}
+[1.753775] (ldlidar_stl_ros2) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/src/demo.cpp.o\x1b[0m\n'}
+[1.753926] (ldlidar_stl_ros2) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/filter/tofbf.cpp.o\x1b[0m\n'}
+[1.754040] (ldlidar_stl_ros2) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/networkcom/network_socket_interface_linux.cpp.o\x1b[0m\n'}
+[1.754144] (ldlidar_stl_ros2) StdoutLine: {'line': b'[ 75%] \x1b[32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/serialcom/serial_interface_linux.cpp.o\x1b[0m\n'}
+[1.756936] (ldlidar_stl_ros2) StdoutLine: {'line': b'[ 87%] \x1b[32mBuilding CXX object CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/logger/log_module.cpp.o\x1b[0m\n'}
+[1.801682] (-) TimerEvent: {}
+[1.902008] (-) TimerEvent: {}
+[1.980160] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid LogModule::\x1b[01;32m\x1b[KInitLock\x1b[m\x1b[K()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.980473] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:172:3:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_init\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[1.980647] (ldlidar_stl_ros2) StderrLine: {'line': b'  172 |   \x1b[01;31m\x1b[Kpthread_mutex_init\x1b[m\x1b[K(&mutex_lock_,NULL);\n'}
+[1.980788] (ldlidar_stl_ros2) StderrLine: {'line': b'      |   \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.980922] (ldlidar_stl_ros2) StderrLine: {'line': b'      |   \x1b[32m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\n'}
+[1.982627] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid LogModule::\x1b[01;32m\x1b[KRealseLock\x1b[m\x1b[K()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.982826] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:180:9:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_unlock\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[1.982976] (ldlidar_stl_ros2) StderrLine: {'line': b'  180 |         \x1b[01;31m\x1b[Kpthread_mutex_unlock\x1b[m\x1b[K(&mutex_lock_);\n'}
+[1.983116] (ldlidar_stl_ros2) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.983254] (ldlidar_stl_ros2) StderrLine: {'line': b'      |         \x1b[32m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\n'}
+[1.984578] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid LogModule::\x1b[01;32m\x1b[KLock\x1b[m\x1b[K()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.984772] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:188:9:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_lock\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[1.984920] (ldlidar_stl_ros2) StderrLine: {'line': b'  188 |         \x1b[01;31m\x1b[Kpthread_mutex_lock\x1b[m\x1b[K(&mutex_lock_);\n'}
+[1.985058] (ldlidar_stl_ros2) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.985195] (ldlidar_stl_ros2) StderrLine: {'line': b'      |         \x1b[32m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\n'}
+[1.986699] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid LogModule::\x1b[01;32m\x1b[KUnLock\x1b[m\x1b[K()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.986874] (ldlidar_stl_ros2) StderrLine: {'line': b'\x1b[01m\x1b[K/home/ros/ros2_ws/src/ldlidar_stl_ros2/ldlidar_driver/src/logger/log_module.cpp:196:9:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_unlock\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope; did you mean \xe2\x80\x98\x1b[01m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[1.987034] (ldlidar_stl_ros2) StderrLine: {'line': b'  196 |         \x1b[01;31m\x1b[Kpthread_mutex_unlock\x1b[m\x1b[K(&mutex_lock_);\n'}
+[1.987174] (ldlidar_stl_ros2) StderrLine: {'line': b'      |         \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.987312] (ldlidar_stl_ros2) StderrLine: {'line': b'      |         \x1b[32m\x1b[Kpthread_mutex_t\x1b[m\x1b[K\n'}
+[2.002120] (-) TimerEvent: {}
+[2.024490] (ldlidar_stl_ros2) StderrLine: {'line': b'gmake[2]: *** [CMakeFiles/ldlidar_stl_ros2_node.dir/build.make:132: CMakeFiles/ldlidar_stl_ros2_node.dir/ldlidar_driver/src/logger/log_module.cpp.o] Error 1\n'}
+[2.024750] (ldlidar_stl_ros2) StderrLine: {'line': b'gmake[2]: *** Waiting for unfinished jobs....\n'}
+[2.102225] (-) TimerEvent: {}
+[2.202547] (-) TimerEvent: {}
+[2.302872] (-) TimerEvent: {}
+[2.403191] (-) TimerEvent: {}
+[2.503495] (-) TimerEvent: {}
+[2.603721] (-) TimerEvent: {}
+[2.703959] (-) TimerEvent: {}
+[2.804184] (-) TimerEvent: {}
+[2.904394] (-) TimerEvent: {}
+[3.004615] (-) TimerEvent: {}
+[3.104837] (-) TimerEvent: {}
+[3.205056] (-) TimerEvent: {}
+[3.305321] (-) TimerEvent: {}
+[3.405555] (-) TimerEvent: {}
+[3.505781] (-) TimerEvent: {}
+[3.606013] (-) TimerEvent: {}
+[3.706296] (-) TimerEvent: {}
+[3.806570] (-) TimerEvent: {}
+[3.906803] (-) TimerEvent: {}
+[4.007040] (-) TimerEvent: {}
+[4.107302] (-) TimerEvent: {}
+[4.207558] (-) TimerEvent: {}
+[4.307834] (-) TimerEvent: {}
+[4.408059] (-) TimerEvent: {}
+[4.508318] (-) TimerEvent: {}
+[4.608582] (-) TimerEvent: {}
+[4.708846] (-) TimerEvent: {}
+[4.809110] (-) TimerEvent: {}
+[4.909378] (-) TimerEvent: {}
+[5.009786] (-) TimerEvent: {}
+[5.110270] (-) TimerEvent: {}
+[5.210506] (-) TimerEvent: {}
+[5.310766] (-) TimerEvent: {}
+[5.411010] (-) TimerEvent: {}
+[5.511271] (-) TimerEvent: {}
+[5.611543] (-) TimerEvent: {}
+[5.711771] (-) TimerEvent: {}
+[5.812025] (-) TimerEvent: {}
+[5.912284] (-) TimerEvent: {}
+[6.012514] (-) TimerEvent: {}
+[6.112771] (-) TimerEvent: {}
+[6.213041] (-) TimerEvent: {}
+[6.250172] (ldlidar_stl_ros2) StderrLine: {'line': b'gmake[1]: *** [CMakeFiles/Makefile2:137: CMakeFiles/ldlidar_stl_ros2_node.dir/all] Error 2\n'}
+[6.250373] (ldlidar_stl_ros2) StderrLine: {'line': b'gmake: *** [Makefile:146: all] Error 2\n'}
+[6.252000] (ldlidar_stl_ros2) CommandEnded: {'returncode': 2}
+[6.268440] (ldlidar_stl_ros2) JobEnded: {'identifier': 'ldlidar_stl_ros2', 'rc': 2}
+[6.313159] (-) TimerEvent: {}
+[6.413415] (-) TimerEvent: {}
+[6.513637] (-) TimerEvent: {}
+[6.613849] (-) TimerEvent: {}
+[6.714097] (-) TimerEvent: {}
+[6.814351] (-) TimerEvent: {}
+[6.914569] (-) TimerEvent: {}
+[7.014790] (-) TimerEvent: {}
+[7.115030] (-) TimerEvent: {}
+[7.215272] (-) TimerEvent: {}
+[7.315494] (-) TimerEvent: {}
+[7.415703] (-) TimerEvent: {}
+[7.515914] (-) TimerEvent: {}
+[7.616161] (-) TimerEvent: {}
+[7.716409] (-) TimerEvent: {}
+[7.816617] (-) TimerEvent: {}
+[7.916825] (-) TimerEvent: {}
+[8.017067] (-) TimerEvent: {}
+[8.117307] (-) TimerEvent: {}
+[8.217527] (-) TimerEvent: {}
+[8.317769] (-) TimerEvent: {}
+[8.417979] (-) TimerEvent: {}
+[8.518230] (-) TimerEvent: {}
+[8.618480] (-) TimerEvent: {}
+[8.718728] (-) TimerEvent: {}
+[8.818978] (-) TimerEvent: {}
+[8.919333] (-) TimerEvent: {}
+[9.019580] (-) TimerEvent: {}
+[9.119803] (-) TimerEvent: {}
+[9.192438] (quadruped_basics) StdoutLine: {'line': b'[100%] \x1b[32m\x1b[1mLinking CXX executable actuator_node\x1b[0m\n'}
+[9.219898] (-) TimerEvent: {}
+[9.320196] (-) TimerEvent: {}
+[9.420443] (-) TimerEvent: {}
+[9.423607] (quadruped_basics) StdoutLine: {'line': b'[100%] Built target actuator_node\n'}
+[9.433026] (quadruped_basics) JobEnded: {'identifier': 'quadruped_basics', 'rc': 'SIGINT'}
+[9.443486] (-) EventReactorShutdown: {}

@@ -49,6 +49,7 @@ ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -p use_sim_time:
 # Launch sim + robot brain
 ros2 launch quadruped_basics sim.launch.py
 ros2 run quadruped_basics ik_node.py --ros-args -p use_sim_time:=true
+
 ## Launch seq for autonomus nav (amcl) :
 ros2 launch nav2_bringup bringup_launch.py use_sim_time:=true map:=/home/ros/ros2_ws/src/quadruped_basics/maps/third_better_map.yaml params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_nav2.yaml
 (Don't forget to put origin 2D pose)
@@ -58,6 +59,7 @@ ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/ros/ros2
 (Don't forget to put origin 2D pose)
 ### To visualise autonomus nav with nav2
 ros2 run rviz2 rviz2 -d $(ros2 pkg prefix nav2_bringup)/share/nav2_bringup/rviz/nav2_default_view.rviz --ros-args -p use_sim_time:=true
+
 ## Launch for mapping (slam) :
 ros2 launch slam_toolbox online_async_launch.py slam_params_file:=/home/ros/ros2_ws/src/quadruped_basics/config/my_slam_params.yaml use_sim_time:=true
 ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true
@@ -78,3 +80,6 @@ UBEC 3A : 10
 
 7 * 4 + 4 * 4 + 14 * 8 + 73 + 46 + 10 + 140 + 15 + 10 = 450
 Main body : 14 * 4 + 73 + 10 + 140 + 15 + 10 = 304 + lidar ?
+
+Bugs: 
+1) sudo chmod 666 /var/run/docker.sock

@@ -1,0 +1,2 @@
+Invoking command in '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/ldlidar_stl_ros2 -- -j16 -l16
+Invoked command in '/home/ros/ros2_ws/src/build/ldlidar_stl_ros2' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/jazzy /usr/bin/cmake --build /home/ros/ros2_ws/src/build/ldlidar_stl_ros2 -- -j16 -l16
