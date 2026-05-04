@@ -1,8 +1,7 @@
-# My quadruped project (find a name ?)
-(Photo of the robot)
+# YMA-Quadruped
 
 ## Short presentation
-This repo is for my quadruped robot (code, 3D files, etc.). This walking robot can autonomously navigate thanks to Nav2 and SLAM. I built this with ROS 2 Jazzy, running on an ESP32 and a Raspberry Pi.  
+This repo is for my quadruped robot (code, 3D files, etc.). This walking robot can autonomously navigate thanks to Nav2 and SLAM. I built this with ROS 2 Jazzy, running on an ESP32 and a Raspberry Pi.
 My goal is to show examples of how to make your own autonomous quadruped with ROS 2.
 ## What it can do
 https://github.com/user-attachments/assets/2a4f5992-fd1c-4fa5-9b9c-b5832c5c24f9
@@ -10,10 +9,10 @@ https://github.com/user-attachments/assets/2a4f5992-fd1c-4fa5-9b9c-b5832c5c24f9
 It's friction and foot slippage. Even in simulation, the robot rarely moves exactly as commanded, causing odometry to not represent the real robot position.
 
 # Tutorial (🚧 work in progress 🚧):
-Follow these steps to build your own quadruped !  
+Follow these steps to build your own quadruped !
 
 ### 0 - What will my robot do ?
-The first question you have to ask your self and the most important one is: *what will my robot do ?*  
+The first question you have to ask your self and the most important one is: *what will my robot do ?*
 For me, I want my robot to autonomously navigate a semi-controlled environement.
 
 ### 1 - Parts
@@ -23,10 +22,11 @@ Now that you have defined your goals you need to pick your parts.
 - Sensors: 2D LiDAR (for SLAM/Navigation)
 For more details see (parts)[https://github.com/joschmaCYU/quadruped/blob/main/PartsREADME.md]
 
-> (PartsREADME.md file):
+(PartsREADME.md)
 ### 1 - Parts
-As stated before we will be using ROS 2 but it needs power to run ! Thats why you will need something powerfull like a raspberry pi 5. To communicate with the servos and other actuators I choose an ESP32. You could plug everything but the rasp has only 4 PWM pins and you can't just plug the servos to any GPIO pins else they will not act as you want.  
+As stated before we will be using ROS 2 but it needs power to run ! Thats why you will need something powerfull like a raspberry pi 5. To communicate with the servos and other actuators I choose an ESP32. You could plug everything but the rasp has only 4 PWM pins and you can't just plug the servos to any GPIO pins else they will not act as you want.
 To sens the world I choose a 2D lidar (for SLAM/Navigation). This will mesure how far away the obstacles are.
+
 > [!TIP]
 > You don't need to place the lidar low to the ground because you will be able to move your legs up, so even if the lidar doesn't detect the obstacle your robot will still be able to pass over it.
 
@@ -35,70 +35,170 @@ The power side is much more strait forward. If you want to move multiple servos 
 > If your servo use more then 6A be sure to take a more powerfull UBEC
 And the rasp needs also 5V but will not pull more then 3A so I took a 5V/3A UBEC for it!
 
-- Sketch of my electronic (TODO)
+Sketch of my electronic:
+```mermaid
+graph TD
+    %% Define Styles
+    classDef power fill:#c0392b,stroke:#e74c3c,stroke-width:2px,color:#fff
+    classDef compute fill:#2c3e50,stroke:#34495e,stroke-width:2px,color:#ecf0f1
+    classDef sensor fill:#8e44ad,stroke:#9b59b6,stroke-width:2px,color:#fff
+    classDef motor fill:#e67e22,stroke:#d35400,stroke-width:2px,color:#fff
 
-> [!TIP]
-> You can add some other sensors like an IMU
+    subgraph Power_Distribution ["Power Sources & Regulators"]
+        BATT("LiPo Battery<br>(3S 11.1V)"):::power
+        UBEC_ESP("Brain UBEC<br>(5V 3A)"):::power
+        UBEC_SRV("Motor UBEC<br>(5V 6A)"):::power
+    end
+
+    subgraph Computing ["Logic & Processing"]
+        PC("Main PC / Raspberry Pi"):::compute
+        ESP32("ESP32 (VIN Pin)"):::compute
+    end
+
+    subgraph Peripherals ["Sensors & Actuators"]
+        SERVOS("8x Servos<br>(V+, GND, Signal)"):::motor
+        IMU("BNO085 IMU"):::sensor
+        LD19("LD19 LiDAR<br>(via CP2102 USB board)"):::sensor
+    end
+
+    %% --- POWER ROUTING (Solid Lines) ---
+    BATT -->|"Raw Battery Voltage (+)"| UBEC_ESP
+    BATT -->|"Raw Battery Voltage (+)"| UBEC_SRV
+
+    UBEC_ESP -->|"5V (+)"| PC
+    UBEC_SRV -->|"Servo Voltage (5V)"| SERVOS
+
+    ESP32 -->|"3.3V Out (+)"| IMU
+    PC -->|"USB 5V (+)"| LD19
+
+    %% --- GROUND ROUTING (Dotted Lines) ---
+    BATT -.->|"GND (-)"| UBEC_ESP
+    BATT -.->|"GND (-)"| UBEC_SRV
+    UBEC_ESP -.->|"GND"| PC
+    UBEC_SRV -.->|"GND"| SERVOS
+    ESP32 -.->|"GND"| IMU
+
+    %% CRITICAL: Common Ground Tie
+    ESP32 -.->|"CRITICAL: Common GND Tie"| UBEC_SRV
+
+    %% --- DATA ROUTING (Thick Lines) ---
+    PC -->|"USB 5V (+)"| ESP32
+    PC ===|"USB Data (ttyUSB0)"| ESP32
+    PC ===|"USB Data (ttyUSB1)"| LD19
+
+    ESP32 ===|"I2C SDA (e.g., GPIO 21)"| IMU
+    ESP32 ===|"I2C SCL (e.g., GPIO 22)"| IMU
+
+    ESP32 ===|"8x PWM Signal Wires"| SERVOS
+```
+
+
+> [!TIPS]
+> You can add some other sensors like: foot contact sensors, a depth camera, ToF sensors, power monitoring
 
 With all of that in mind we can begging with
 ### 2 - Print & Assemble
-Now that you know what we have to fit in our robot lets design it. Use your favorite CAD software and create your URDF file.  
+Now that you know what we have to fit in our robot lets design it. Use your favorite CAD software and create your URDF file.
 For more help see (print)[https://github.com/joschmaCYU/quadruped/blob/main/PrintREADME.md]
 
-> (PrintREADME.md file):
+(PrintREADME)
 ### 2 - Bringing it to your computer
 
 #### 2.1 - Getting the idea
-So you want to design your robot, I have a few tips for you.  
-Beggin by (and I strongly advise you to do so) take a pencil and a sheet of paper and try to draw your robot!  
+So you want to design your robot, I have a few tips for you.
+Beggin by (and I strongly advise you to do so) take a pencil and a sheet of paper and try to draw your robot!
 
 - Sktech of my robot (TODO)
 
-This will help you refine your idea. You will have to ask yourself many questions about how it will move, its height, its length, etc.  
-You can take inspiration from other robots! I took great inspiration of (sesame-robot)[https://github.com/dorianborian/sesame-robot/tree/main].  
+This will help you refine your idea. You will have to ask yourself many questions about how it will move, its height, its length, etc.
+You can take inspiration from other robots! I took great inspiration of (sesame-robot)[https://github.com/dorianborian/sesame-robot/tree/main].
 > [!WARNING]
 > There are multiple types of walking robots, bipedal (2 legs), qudruped, hexapod ect...
 > There are 2 general type of leg position: mammalian and reptilian.
-For mammalian the legs are under the body, like a horse or a dog.  
-For reptilian the legs are on the side, like a spider or a crocodile (that's what I went with)  
+For mammalian the legs are under the body, like a horse or a dog.
+For reptilian the legs are on the side, like a spider or a crocodile (that's what I went with)
+
 > [!TIP]
 > Because the MG90S servos are weak, the chassis must be as lightweight as possible.
-My robot walks like a spider robot. It has 8-DOF.  
+My robot walks like a spider robot. It has 8-DOF.
 
 #### 2.2 - The design
-Now this is the part where you have to take your sketchs and make them in a CAD. Iterate as many time until you are satisfied. *No need to print it yet.*  
+Now this is the part where you have to take your sketchs and make them in a CAD. Iterate as many time until you are satisfied. *No need to print it yet.*
 
 - Image of my robot in CAD (TODO)
 
 #### 2.3 - Creating my urdf file
 ##### 2.3.1 - What is an urdf file ?
-It's simple! It's a file that describes your robot. This file will be used by your simulation software to make the robot move. Rather then having just a fixed 3d the urdf file specifies how parts move/rotate along side each other.  
+It's simple! It's a file that describes your robot. This file will be used by your simulation software to make the robot move. Rather then having just a fixed 3d the urdf file specifies how parts move/rotate along side each other.
 ##### 2.3.2 - How to make it
-Either you rebuild your robot in an urdf software like (D-Robotics)[https://urdf.d-robotics.cc] or (Lever Robotics)[https://lever-robotics.github.io/URDF_creator/]. This can be done quick and dirty but can be less precise.  
-Or you use your newly modeled robot to genereate it. (here)[https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Exporting-an-URDF-File.html] is a tutorial for ROS on how to export your CAD file to an URDF file.  
+Either you rebuild your robot in an urdf software like (D-Robotics)[https://urdf.d-robotics.cc] or (Lever Robotics)[https://lever-robotics.github.io/URDF_creator/]. This can be done quick and dirty but can be less precise.
+Or you use your newly modeled robot to genereate it. (here)[https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Exporting-an-URDF-File.html] is a tutorial for ROS on how to export your CAD file to an URDF file.
 > [!TIP]
 > You will have to specifyl how each part move/rotates this can be tidius but you will have the exact replicate of your robot in the sim !
 
-Speaking of which :  
+Speaking of which :
 ### 3 - Simulating the robot and let's use ROS
-The robot runs on ROS 2 Jazzy, handling the communication between the sensors, the Pi, and the ESP32. (Let's bring your robot to sim)[https://github.com/joschmaCYU/quadruped/blob/main/SimREADME.md]  
+The robot runs on ROS 2 Jazzy, handling the communication between the sensors, the Pi, and the ESP32. (Let's bring your robot to sim)[https://github.com/joschmaCYU/quadruped/blob/main/SimREADME.md]
+This is how it will work:
+```mermaid
+graph TD
+    %% Define Styles
+    classDef pc fill:#2c3e50,stroke:#34495e,stroke-width:2px,color:#ecf0f1
+    classDef esp fill:#27ae60,stroke:#2ecc71,stroke-width:2px,color:#fff
+    classDef sensor fill:#c0392b,stroke:#e74c3c,stroke-width:2px,color:#fff
+    classDef actuator fill:#e67e22,stroke:#d35400,stroke-width:2px,color:#fff
+    classDef software fill:#2980b9,stroke:#3498db,stroke-width:2px,color:#fff
 
-> (SimREADME.md file):
+    subgraph Main_Computer ["Main Computer (PC or Raspberry Pi)"]
+        ROS2("ROS 2 Environment<br>(Nav2, SLAM, IK Node)"):::software
+        U_Agent("Micro-ROS Agent<br>(Docker)"):::software
+        L_Node("LD19 LiDAR Node"):::software
+
+        ROS2 <-->|"ROS 2 Topics<br>(/cmd_vel, /odom)"| U_Agent
+        L_Node -->|"ROS 2 Topic<br>(/scan)"| ROS2
+    end
+
+    subgraph Microcontroller ["Microcontroller"]
+        ESP32("ESP32<br>(Micro-ROS Client)"):::esp
+    end
+
+    subgraph Peripherals ["Sensors & Actuators"]
+        LD19("LD19 LiDAR"):::sensor
+        IMU("BNO085 IMU"):::sensor
+        Servos("8x Quadruped Servos<br>(Legs)"):::actuator
+    end
+
+    %% Hardware Connections
+    U_Agent <-->|"USB Cable<br>(/dev/ttyUSB0)"| ESP32
+    L_Node <-->|"USB Cable<br>(/dev/ttyUSB1)"| LD19
+
+    ESP32 <-->|"I2C (SDA, SCL, 3.3V, GND)"| IMU
+    ESP32 -->|"PWM / Servo Control Board"| Servos
+
+    %% Apply Styles
+    class Main_Computer pc
+    class Microcontroller esp
+    class Peripherals pc
+```
+
+
+(https://github.com/joschmaCYU/quadruped/blob/main/SimREADME.md)
 ### 3 - Simulating the robot
 #### 3.1 - What is ROS and what will we be using ROS for ?
-The most simple explanation I can give is : ROS is like whatsapp a messaging app but the messages are information. We will be using ROS to benefit from it's great echo system (simulators, autonomus navigation, mapping...).  
+The most simple explanation I can give is : ROS is like whatsapp a messaging app but the messages are information. We will be using ROS to benefit from it's great echo system (simulators, autonomus navigation, mapping...).
 > [!TIP]
 > If you have never used ROS you should begging with getting familiar to it with (tutorials)[https://docs.ros.org/en/jazzy/Tutorials.html] !
 #### 3.2 - Set up urdf + sim
-You can find a tutorial to do so (here)[https://github.com/MOGI-ROS/Week-3-4-Gazebo-basics]. I will not detail this part which is outside of this tutorial scope.  
+You can find a tutorial to do so (here)[https://github.com/MOGI-ROS/Week-3-4-Gazebo-basics]. I will not detail this part which is outside of this tutorial scope.
 
 #### 3.2 - Making the robot move
 To make the robot move we will use inverse kinematics and then use 3d IK to move over obstacles.
-If you don't want this I am sure you can find some pre-built frameworks like ros2_control walking plugins to do the job for you but here we will create our own !  
+If you don't want this I am sure you can find some pre-built frameworks like ros2_control walking plugins to do the job for you but here we will create our own !
+
 1) The upper leg (L1​) is permanently sticking straight out horizontally.
 2) The knee joint tilts the lower leg (L2​) outward to control the robot's height.
 3) The shoulder joint acts as a "Yaw" hinge, sweeping the entire leg forward and backward like a door to control the stride.
-(sketch how the robot will move to explain the math)  
+(sketch how the robot will move to explain the math)
 
 ```
 def calculate_ik(self, x, z):
@@ -123,7 +223,7 @@ def calculate_ik(self, x, z):
 
         return shoulder_angle, knee_angle
 ```
-The math isn't very advanced but you need to take your time to assimilate it  
+The math isn't very advanced but you need to take your time to assimilate it
 
 #### 3.3 - IK gait
 ```
@@ -167,9 +267,349 @@ The math isn't very advanced but you need to take your time to assimilate it
 ```
 
 
-### 4 - Autonomus navigation
+### 4 - Navigation
 #### 4.1 - AMCL
 #### 4.2 - SLAM
+Summary of our ros2 topics:
+```mermaid
+# YMA-Quadruped
+
+## Short presentation
+This repo is for my quadruped robot (code, 3D files, etc.). This walking robot can autonomously navigate thanks to Nav2 and SLAM. I built this with ROS 2 Jazzy, running on an ESP32 and a Raspberry Pi.
+My goal is to show examples of how to make your own autonomous quadruped with ROS 2.
+## What it can do
+https://github.com/user-attachments/assets/2a4f5992-fd1c-4fa5-9b9c-b5832c5c24f9
+## The chalenge of making a walking robot
+It's friction and foot slippage. Even in simulation, the robot rarely moves exactly as commanded, causing odometry to not represent the real robot position.
+
+# Tutorial (🚧 work in progress 🚧):
+Follow these steps to build your own quadruped !
+
+### 0 - What will my robot do ?
+The first question you have to ask your self and the most important one is: *what will my robot do ?*
+For me, I want my robot to autonomously navigate a semi-controlled environement.
+
+### 1 - Parts
+Now that you have defined your goals you need to pick your parts.
+- Compute: Raspberry Pi 5 (Main ROS 2 brain) and ESP32 (Servo controller)
+- Actuators: 8x MG90S Micro Servos
+- Sensors: 2D LiDAR (for SLAM/Navigation)
+For more details see (parts)[https://github.com/joschmaCYU/quadruped/blob/main/PartsREADME.md]
+
+(PartsREADME.md)
+### 1 - Parts
+As stated before we will be using ROS 2 but it needs power to run ! Thats why you will need something powerfull like a raspberry pi 5. To communicate with the servos and other actuators I choose an ESP32. You could plug everything but the rasp has only 4 PWM pins and you can't just plug the servos to any GPIO pins else they will not act as you want.
+To sens the world I choose a 2D lidar (for SLAM/Navigation). This will mesure how far away the obstacles are.
+
+> [!TIP]
+> You don't need to place the lidar low to the ground because you will be able to move your legs up, so even if the lidar doesn't detect the obstacle your robot will still be able to pass over it.
+
+The power side is much more strait forward. If you want to move multiple servos at the same time your boards will not provide sufficiant power you will need a battery. I choose a small 2200mAh LiPo Battery. The servos need 5v to operate you need to make sure to provide these 5v to much and your servo will burn and to little they will not move. So you will need a 5V/6A UBEC which regulates the voltage and has a max current of 6A
+> [!WARNING]
+> If your servo use more then 6A be sure to take a more powerfull UBEC
+And the rasp needs also 5V but will not pull more then 3A so I took a 5V/3A UBEC for it!
+
+Sketch of my electronic:
+```mermaid
+graph TD
+    %% Define Styles
+    classDef power fill:#c0392b,stroke:#e74c3c,stroke-width:2px,color:#fff
+    classDef compute fill:#2c3e50,stroke:#34495e,stroke-width:2px,color:#ecf0f1
+    classDef sensor fill:#8e44ad,stroke:#9b59b6,stroke-width:2px,color:#fff
+    classDef motor fill:#e67e22,stroke:#d35400,stroke-width:2px,color:#fff
+
+    subgraph Power_Distribution ["Power Sources & Regulators"]
+        BATT("LiPo Battery<br>(3S 11.1V)"):::power
+        UBEC_ESP("Brain UBEC<br>(5V 3A)"):::power
+        UBEC_SRV("Motor UBEC<br>(5V 6A)"):::power
+    end
+
+    subgraph Computing ["Logic & Processing"]
+        PC("Main PC / Raspberry Pi"):::compute
+        ESP32("ESP32 (VIN Pin)"):::compute
+    end
+
+    subgraph Peripherals ["Sensors & Actuators"]
+        SERVOS("8x Servos<br>(V+, GND, Signal)"):::motor
+        IMU("BNO085 IMU"):::sensor
+        LD19("LD19 LiDAR<br>(via CP2102 USB board)"):::sensor
+    end
+
+    %% --- POWER ROUTING (Solid Lines) ---
+    BATT -->|"Raw Battery Voltage (+)"| UBEC_ESP
+    BATT -->|"Raw Battery Voltage (+)"| UBEC_SRV
+
+    UBEC_ESP -->|"5V (+)"| PC
+    UBEC_SRV -->|"Servo Voltage (5V)"| SERVOS
+
+    ESP32 -->|"3.3V Out (+)"| IMU
+    PC -->|"USB 5V (+)"| LD19
+
+    %% --- GROUND ROUTING (Dotted Lines) ---
+    BATT -.->|"GND (-)"| UBEC_ESP
+    BATT -.->|"GND (-)"| UBEC_SRV
+    UBEC_ESP -.->|"GND"| PC
+    UBEC_SRV -.->|"GND"| SERVOS
+    ESP32 -.->|"GND"| IMU
+
+    %% CRITICAL: Common Ground Tie
+    ESP32 -.->|"CRITICAL: Common GND Tie"| UBEC_SRV
+
+    %% --- DATA ROUTING (Thick Lines) ---
+    PC -->|"USB 5V (+)"| ESP32
+    PC ===|"USB Data (ttyUSB0)"| ESP32
+    PC ===|"USB Data (ttyUSB1)"| LD19
+
+    ESP32 ===|"I2C SDA (e.g., GPIO 21)"| IMU
+    ESP32 ===|"I2C SCL (e.g., GPIO 22)"| IMU
+
+    ESP32 ===|"8x PWM Signal Wires"| SERVOS
+```
+
+
+> [!TIPS]
+> You can add some other sensors like: foot contact sensors, a depth camera, ToF sensors, power monitoring
+
+With all of that in mind we can begging with
+### 2 - Print & Assemble
+Now that you know what we have to fit in our robot lets design it. Use your favorite CAD software and create your URDF file.
+For more help see (print)[https://github.com/joschmaCYU/quadruped/blob/main/PrintREADME.md]
+
+(PrintREADME)
+### 2 - Bringing it to your computer
+
+#### 2.1 - Getting the idea
+So you want to design your robot, I have a few tips for you.
+Beggin by (and I strongly advise you to do so) take a pencil and a sheet of paper and try to draw your robot!
+
+- Sktech of my robot (TODO)
+
+This will help you refine your idea. You will have to ask yourself many questions about how it will move, its height, its length, etc.
+You can take inspiration from other robots! I took great inspiration of (sesame-robot)[https://github.com/dorianborian/sesame-robot/tree/main].
+> [!WARNING]
+> There are multiple types of walking robots, bipedal (2 legs), qudruped, hexapod ect...
+> There are 2 general type of leg position: mammalian and reptilian.
+For mammalian the legs are under the body, like a horse or a dog.
+For reptilian the legs are on the side, like a spider or a crocodile (that's what I went with)
+
+> [!TIP]
+> Because the MG90S servos are weak, the chassis must be as lightweight as possible.
+My robot walks like a spider robot. It has 8-DOF.
+
+#### 2.2 - The design
+Now this is the part where you have to take your sketchs and make them in a CAD. Iterate as many time until you are satisfied. *No need to print it yet.*
+
+- Image of my robot in CAD (TODO)
+
+#### 2.3 - Creating my urdf file
+##### 2.3.1 - What is an urdf file ?
+It's simple! It's a file that describes your robot. This file will be used by your simulation software to make the robot move. Rather then having just a fixed 3d the urdf file specifies how parts move/rotate along side each other.
+##### 2.3.2 - How to make it
+Either you rebuild your robot in an urdf software like (D-Robotics)[https://urdf.d-robotics.cc] or (Lever Robotics)[https://lever-robotics.github.io/URDF_creator/]. This can be done quick and dirty but can be less precise.
+Or you use your newly modeled robot to genereate it. (here)[https://docs.ros.org/en/humble/Tutorials/Intermediate/URDF/Exporting-an-URDF-File.html] is a tutorial for ROS on how to export your CAD file to an URDF file.
+> [!TIP]
+> You will have to specifyl how each part move/rotates this can be tidius but you will have the exact replicate of your robot in the sim !
+
+Speaking of which :
+### 3 - Simulating the robot and let's use ROS
+The robot runs on ROS 2 Jazzy, handling the communication between the sensors, the Pi, and the ESP32. (Let's bring your robot to sim)[https://github.com/joschmaCYU/quadruped/blob/main/SimREADME.md]
+This is how it will work:
+```mermaid
+graph TD
+    %% Define Styles
+    classDef pc fill:#2c3e50,stroke:#34495e,stroke-width:2px,color:#ecf0f1
+    classDef esp fill:#27ae60,stroke:#2ecc71,stroke-width:2px,color:#fff
+    classDef sensor fill:#c0392b,stroke:#e74c3c,stroke-width:2px,color:#fff
+    classDef actuator fill:#e67e22,stroke:#d35400,stroke-width:2px,color:#fff
+    classDef software fill:#2980b9,stroke:#3498db,stroke-width:2px,color:#fff
+
+    subgraph Main_Computer ["Main Computer (PC or Raspberry Pi)"]
+        ROS2("ROS 2 Environment<br>(Nav2, SLAM, IK Node)"):::software
+        U_Agent("Micro-ROS Agent<br>(Docker)"):::software
+        L_Node("LD19 LiDAR Node"):::software
+
+        ROS2 <-->|"ROS 2 Topics<br>(/cmd_vel, /odom)"| U_Agent
+        L_Node -->|"ROS 2 Topic<br>(/scan)"| ROS2
+    end
+
+    subgraph Microcontroller ["Microcontroller"]
+        ESP32("ESP32<br>(Micro-ROS Client)"):::esp
+    end
+
+    subgraph Peripherals ["Sensors & Actuators"]
+        LD19("LD19 LiDAR"):::sensor
+        IMU("BNO085 IMU"):::sensor
+        Servos("8x Quadruped Servos<br>(Legs)"):::actuator
+    end
+
+    %% Hardware Connections
+    U_Agent <-->|"USB Cable<br>(/dev/ttyUSB0)"| ESP32
+    L_Node <-->|"USB Cable<br>(/dev/ttyUSB1)"| LD19
+
+    ESP32 <-->|"I2C (SDA, SCL, 3.3V, GND)"| IMU
+    ESP32 -->|"PWM / Servo Control Board"| Servos
+
+    %% Apply Styles
+    class Main_Computer pc
+    class Microcontroller esp
+    class Peripherals pc
+```
+
+
+(https://github.com/joschmaCYU/quadruped/blob/main/SimREADME.md)
+### 3 - Simulating the robot
+#### 3.1 - What is ROS and what will we be using ROS for ?
+The most simple explanation I can give is : ROS is like whatsapp a messaging app but the messages are information. We will be using ROS to benefit from it's great echo system (simulators, autonomus navigation, mapping...).
+> [!TIP]
+> If you have never used ROS you should begging with getting familiar to it with (tutorials)[https://docs.ros.org/en/jazzy/Tutorials.html] !
+#### 3.2 - Set up urdf + sim
+You can find a tutorial to do so (here)[https://github.com/MOGI-ROS/Week-3-4-Gazebo-basics]. I will not detail this part which is outside of this tutorial scope.
+
+#### 3.2 - Making the robot move
+To make the robot move we will use inverse kinematics and then use 3d IK to move over obstacles.
+If you don't want this I am sure you can find some pre-built frameworks like ros2_control walking plugins to do the job for you but here we will create our own !
+
+1) The upper leg (L1​) is permanently sticking straight out horizontally.
+2) The knee joint tilts the lower leg (L2​) outward to control the robot's height.
+3) The shoulder joint acts as a "Yaw" hinge, sweeping the entire leg forward and backward like a door to control the stride.
+(sketch how the robot will move to explain the math)
+
+```
+def calculate_ik(self, x, z):
+        # 1. Physical Leg Lengths
+        L1 = 0.206  # length of upper leg
+        L2 = 0.250  # length of lower leg
+
+        # 3. KNEE MATH (Controls Height)
+        # Because your URDF draws the calf pointing straight down when angle is 0. A larger angle bends it outwards.
+        cos_knee = abs(z) / L2
+        cos_knee = max(0.0, min(1.0, cos_knee))
+        knee_angle = math.acos(cos_knee)
+
+        # 4. SHOULDER MATH (Controls Forward Stride)
+        # Calculate how far out the foot currently is due to the knee bend
+        horizontal_reach = L1 + (L2 * math.sin(knee_angle))
+
+        # Calculate the sweep angle required to move 'x' meters forward
+        step_reach = x / horizontal_reach
+        step_reach = max(-1.0, min(1.0, step_reach))
+        shoulder_angle = math.asin(step_reach)
+
+        return shoulder_angle, knee_angle
+```
+The math isn't very advanced but you need to take your time to assimilate it
+
+#### 3.3 - IK gait
+```
+ def get_ik_gait(self, t, phase_offset, step_scale):
+        T = 0.80
+        duty_factor = 0.60
+        cycle_progress = ((t / T) + phase_offset) % 1.0
+
+        # --- SPIDER GAIT SETTINGS ---
+        stride_length = 0.25  # 15cm max steps
+        step_height = 0.08    # Lift foot 8cm into the air
+        stand_height = -0.25  # Keep the hip 20cm off the floor (Safe for L2=25cm)
+
+        if cycle_progress < duty_factor:
+            # STANCE PHASE
+            stance_p = cycle_progress / duty_factor
+            target_x = (stride_length / 2.0) - (stride_length * stance_p)
+            target_z = stand_height
+        else:
+            # SWING PHASE
+            swing_p = (cycle_progress - duty_factor) / (1.0 - duty_factor)
+            target_x = -(stride_length / 2.0) + (stride_length * swing_p)
+            target_z = stand_height + (step_height * math.sin(swing_p * math.pi))
+
+        # SCALE THE PHYSICAL STEP (Not the joint angle!)
+        target_x = target_x * step_scale
+
+        return self.calculate_ik(target_x, target_z)
+
+```
+
+#### 3.4 - Odom
+```
+        speed_multiplier = 0.08247
+        turn_multiplier = 0.6
+
+        self.odom_yaw += (self.cmd_w * turn_multiplier) * self.dt
+        self.odom_yaw = math.atan2(math.sin(self.odom_yaw), math.cos(self.odom_yaw))
+        self.odom_x += (self.cmd_x * speed_multiplier * math.cos(self.odom_yaw)) * self.dt
+        self.odom_y += (self.cmd_x * speed_multiplier * math.sin(self.odom_yaw)) * self.dt
+```
+
+
+### 4 - Navigation
+#### 4.1 - AMCL
+#### 4.2 - SLAM
+Summary of our ros2 topics:
+```mermaid
+graph TD
+    %% Define Styles
+    classDef autonomy fill:#2980b9,stroke:#3498db,stroke-width:2px,color:#fff
+    classDef core fill:#8e44ad,stroke:#9b59b6,stroke-width:2px,color:#fff
+    classDef drivers fill:#c0392b,stroke:#e74c3c,stroke-width:2px,color:#fff
+    classDef mros fill:#27ae60,stroke:#2ecc71,stroke-width:2px,color:#fff
+    
+    subgraph High_Level_Autonomy ["High-Level Autonomy (Nav2 & SLAM)"]
+        NAV2("Nav2 Stack<br>(Planner, Controller, BT Navigator)"):::autonomy
+        SLAM("SLAM Toolbox<br>(Map Generation)"):::autonomy
+    end
+
+    subgraph Robot_Core_Logic ["Robot Core Logic"]
+        IK_NODE("ik_node.py<br>(Quadruped Kinematics)"):::core
+        RSP("robot_state_publisher<br>(URDF Parsing)"):::core
+        TF_STATIC("static_transform_publisher<br>(base_footprint -> base_laser)"):::core
+    end
+
+    subgraph Hardware_Drivers ["Hardware Drivers"]
+        LIDAR_NODE("ldlidar_stl_ros2_node"):::drivers
+        AGENT("micro_ros_agent<br>(Serial Bridge)"):::mros
+    end
+
+    subgraph ESP32_Microcontroller ["ESP32 (Micro-ROS Node)"]
+        ESP_NODE("ESP32<br>(IMU & Servo Control)"):::mros
+    end
+
+    %% --- TOPIC CONNECTIONS (Data Flow) ---
+    
+    %% Sensors to Brain
+    LIDAR_NODE -->|"/scan (LaserScan)"| SLAM
+    LIDAR_NODE -->|"/scan (LaserScan)"| NAV2
+    
+    %% Movement Commands
+    NAV2 -->|"/cmd_vel (Twist)"| IK_NODE
+    
+    %% Kinematics to Hardware
+    IK_NODE -->|"/joint_group_position_controller/commands"| AGENT
+    AGENT ====|"UART/Serial Bridge"| ESP_NODE
+    
+    %% Hardware Feedback to Brain
+    ESP_NODE ====|"UART/Serial Bridge"| AGENT
+    AGENT -->|"/imu (Imu)"| IK_NODE
+    AGENT -->|"/imu (Imu)"| NAV2
+    
+    %% Odometry Feedback
+    IK_NODE -->|"/odom (Odometry)"| NAV2
+    IK_NODE -->|"/odom (Odometry)"| SLAM
+
+    %% --- TF TREE CONNECTIONS (Coordinate Math - Dotted Lines) ---
+    SLAM -.->|"/tf (map -> odom)"| NAV2
+    IK_NODE -.->|"/tf (odom -> base_footprint)"| NAV2
+    RSP -.->|"/tf_static (Body Links)"| NAV2
+    TF_STATIC -.->|"/tf_static (base_laser)"| NAV2
+```
+### 5 - Bulding the robot
+### 6 - Sim to life
+
+<details>
+<summary>FAQ</summary>
+Should I program in Python or C++ ? <br> At the start for quick iteration you can use python and if the performance requires it switch to c++. <br><br>
+</details>
+
+
 ### 5 - Bulding the robot
 ### 6 - Sim to life
 
